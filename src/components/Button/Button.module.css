@@ -1,0 +1,75 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--flowi-font-family);
+  font-weight: 500;
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: var(--flowi-radius-md);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--flowi-color-primary-500);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Variants */
+
+.primary {
+  background-color: var(--flowi-color-primary-600);
+  color: var(--flowi-color-neutral-0);
+}
+
+.primary:hover:not(:disabled) {
+  background-color: var(--flowi-color-primary-700);
+}
+
+.primary:active:not(:disabled) {
+  background-color: var(--flowi-color-primary-800);
+}
+
+.secondary {
+  background-color: var(--flowi-color-neutral-0);
+  color: var(--flowi-color-neutral-800);
+  border-color: var(--flowi-color-neutral-300);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: var(--flowi-color-neutral-50);
+  border-color: var(--flowi-color-neutral-400);
+}
+
+.secondary:active:not(:disabled) {
+  background-color: var(--flowi-color-neutral-100);
+}
+
+/* Sizes */
+
+.sm {
+  padding: var(--flowi-spacing-xs) var(--flowi-spacing-sm);
+  font-size: var(--flowi-font-size-sm);
+  gap: var(--flowi-spacing-xs);
+}
+
+.md {
+  padding: var(--flowi-spacing-sm) var(--flowi-spacing-md);
+  font-size: var(--flowi-font-size-md);
+  gap: var(--flowi-spacing-sm);
+}
+
+.lg {
+  padding: var(--flowi-spacing-md) var(--flowi-spacing-lg);
+  font-size: var(--flowi-font-size-lg);
+  gap: var(--flowi-spacing-sm);
+}

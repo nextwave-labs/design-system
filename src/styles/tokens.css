@@ -1,0 +1,55 @@
+:root {
+  /* Colors — Primary */
+  --flowi-color-primary-50: #eff6ff;
+  --flowi-color-primary-100: #dbeafe;
+  --flowi-color-primary-200: #bfdbfe;
+  --flowi-color-primary-300: #93c5fd;
+  --flowi-color-primary-400: #60a5fa;
+  --flowi-color-primary-500: #3b82f6;
+  --flowi-color-primary-600: #2563eb;
+  --flowi-color-primary-700: #1d4ed8;
+  --flowi-color-primary-800: #1e40af;
+  --flowi-color-primary-900: #1e3a8a;
+
+  /* Colors — Neutral */
+  --flowi-color-neutral-0: #ffffff;
+  --flowi-color-neutral-50: #f9fafb;
+  --flowi-color-neutral-100: #f3f4f6;
+  --flowi-color-neutral-200: #e5e7eb;
+  --flowi-color-neutral-300: #d1d5db;
+  --flowi-color-neutral-400: #9ca3af;
+  --flowi-color-neutral-500: #6b7280;
+  --flowi-color-neutral-600: #4b5563;
+  --flowi-color-neutral-700: #374151;
+  --flowi-color-neutral-800: #1f2937;
+  --flowi-color-neutral-900: #111827;
+
+  /* Typography */
+  --flowi-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --flowi-font-size-xs: 0.75rem;
+  --flowi-font-size-sm: 0.875rem;
+  --flowi-font-size-md: 1rem;
+  --flowi-font-size-lg: 1.125rem;
+  --flowi-font-size-xl: 1.25rem;
+
+  /* Spacing */
+  --flowi-spacing-xs: 0.25rem;
+  --flowi-spacing-sm: 0.5rem;
+  --flowi-spacing-md: 0.75rem;
+  --flowi-spacing-lg: 1rem;
+  --flowi-spacing-xl: 1.5rem;
+  --flowi-spacing-2xl: 2rem;
+
+  /* Border Radius */
+  --flowi-radius-sm: 0.25rem;
+  --flowi-radius-md: 0.375rem;
+  --flowi-radius-lg: 0.5rem;
+  --flowi-radius-full: 9999px;
+
+  /* Shadows */
+  --flowi-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --flowi-shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --flowi-shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
