@@ -14,6 +14,23 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react()],
+  build: {
+    lib: {
+      entry: path.resolve(dirname, 'src/index.ts'),
+      formats: ['es', 'cjs'],
+      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`,
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      output: {
+        assetFileNames: 'styles/[name][extname]',
+      },
+    },
+    cssCodeSplit: false,
+    sourcemap: true,
+    emptyOutDir: false,
+    copyPublicDir: false,
+  },
   test: {
     projects: [
       {
