@@ -1,6 +1,8 @@
 # Contributing to Flowi
 
-Thanks for your interest in contributing. This guide explains how to set up your environment, create or modify components, and submit your pull request.
+Thanks for your interest in contributing. This guide explains how to set up your environment, create or modify components, and submit your pull request through the project’s branch-based workflow.
+
+Before opening a PR, please also read the project’s [Code of Conduct](CODE_OF_CONDUCT.md) and [Security policy](SECURITY.md).
 
 ## Getting started
 
@@ -10,9 +12,13 @@ Thanks for your interest in contributing. This guide explains how to set up your
 pnpm install
 ```
 
-This also sets up Husky git hooks automatically (`prepare` script).
+This also sets up Husky git hooks automatically through the `prepare` script.
 
-### 2. Verify everything works
+### 2. Use the supported Node version
+
+This project expects Node 22 or newer. The repository includes `.nvmrc` and the `engines.node` setting in `package.json` to help keep local and CI environments aligned.
+
+### 3. Verify everything works
 
 ```bash
 pnpm build
@@ -24,14 +30,19 @@ pnpm storybook
 
 ### 1. Create a branch
 
-Create a branch from the corresponding `feat/<component>` branch:
+Use a feature branch for your work. The project follows a branch-based PR model, so avoid committing directly to `main`.
 
 ```bash
-git fetch origin
-git checkout -b feat/alert-my-change origin/feat/alert
+git checkout -b feat/alert-my-change
 ```
 
-Your working branch must derive from the `feat/` branch of the component you're working on.
+A common convention is:
+
+```bash
+git checkout -b feat/<short-feature-name>
+```
+
+If your work is tied to an existing component or feature area, keep the branch name aligned with that scope (for example `feat/button-loading-state`).
 
 ### 2. Make your changes
 
@@ -47,30 +58,52 @@ pnpm commit
 
 Or write the message manually following the format:
 
-```
+```text
 feat(button): add loading state
 fix(alert): correct border-radius on mobile
 ```
 
-The `commit-msg` hook validates the format automatically. If the commit doesn't follow the convention, it will be rejected.
+The `commit-msg` hook validates the format automatically. If the commit does not follow the convention, it will be rejected.
 
-### 4. Push and pull request
+### 4. Push and open a pull request
 
 ```bash
 git push origin feat/alert-my-change
 ```
 
-Then on GitHub, open a **Pull Request** targeting the `feat/<component>` branch (e.g., `feat/alert`), **not `main`**. In the PR description:
+Then open a pull request from your feature branch to the appropriate target branch for the project’s branch workflow. Keep the PR focused and include:
 
-- Explain **what** changes and **why**
-- If it's a new component, include a Storybook screenshot
-- If it modifies an existing component, describe the before/after
+- a clear description of what changed and why
+- the affected component or area
+- screenshots or a Storybook link when the change is visual
+- any breaking changes or API-impacting updates
 
 ### 5. Review and merge
 
-A maintainer will review the PR and merge it into the `feat/` branch. When the feature is ready, a maintainer will merge the `feat/` branch into `main`. Publishing happens later, when a maintainer manually runs the `Release` workflow from GitHub Actions.
+A maintainer will review the PR and merge it according to the branch strategy in use. After merge, publishing happens later through the release workflow described in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 See the [release and npm publishing guide](DEPLOYMENT.md) for the required secrets, permissions, and post-merge verification steps.
+
+## Branching model
+
+This repository uses a branch-based pull request workflow.
+
+| Branch type | Purpose                          | Example                     |
+| ----------- | -------------------------------- | --------------------------- |
+| `main`      | Default integration branch       | `main`                      |
+| `feat/`     | New features or enhancements     | `feat/button-loading-state` |
+| `fix/`      | Bug fixes and corrective changes | `fix/button-focus-ring`     |
+| `docs/`     | Documentation updates            | `docs/readme-structure`     |
+| `chore/`    | Maintenance and tooling tasks    | `chore/node-version-pin`    |
+
+Guidelines:
+
+- create a short-lived branch for your work
+- keep the branch focused on one concern or component
+- open a PR from your branch against the appropriate target branch
+- do not push directly to `main`
+
+This keeps review history clean and makes it easier to track what is being merged.
 
 ---
 
@@ -216,11 +249,14 @@ pnpm lint         # no errors
 
 ## Checklist before opening a PR
 
-- [ ] Component extends native HTML attributes
+- [ ] Branch is created from the correct base branch and follows the project naming convention
+- [ ] Issue or feature context is referenced in the PR description when relevant
+- [ ] Component extends native HTML attributes where appropriate
 - [ ] Props exported as `type`
 - [ ] Styles use `--flowi-*` tokens
 - [ ] `:focus-visible` with outline defined
 - [ ] `:disabled` handled if applicable
 - [ ] Barrel exports updated (`component/index.ts` + `components/index.ts`)
 - [ ] Story created with `tags: ['autodocs']`
-- [ ] `pnpm build` and `pnpm lint` pass
+- [ ] `pnpm build`, `pnpm lint`, and relevant Storybook checks pass
+- [ ] Visual or behavioral changes are described clearly in the PR

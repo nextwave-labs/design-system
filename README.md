@@ -1,92 +1,47 @@
 # Flowi
 
-UI component library built with React, TypeScript, and Vite.
+Flowi is a React UI component library built with TypeScript and Vite. It focuses on small, composable primitives, design tokens, and a consistent Storybook-driven workflow.
 
-## Project structure
+## Why Flowi
 
-```
-flowi/
-├── .husky/                     # Git hooks (commit-msg, pre-commit)
-├── .storybook/
-│   ├── main.ts                 # Storybook configuration
-│   ├── preview.ts              # Global decorators and imports (tokens.css)
-│   └── vitest.setup.ts         # Vitest test setup
-├── src/
-│   ├── components/
-│   │   ├── Button/
-│   │   │   ├── Button.tsx          # Button component
-│   │   │   ├── Button.module.css   # Button styles (CSS Modules)
-│   │   │   └── index.ts           # Component barrel export
-│   │   └── index.ts               # Barrel export for all components
-│   ├── stories/                   # Storybook stories (playground)
-│   ├── styles/
-│   │   └── tokens.css             # Design tokens (--flowi-*)
-│   ├── css-modules.d.ts           # CSS Modules type declarations
-│   └── index.ts                   # Library entry point
-├── commitlint.config.js       # commitlint configuration
-├── eslint.config.js           # ESLint configuration
-├── prettier.config.js         # Prettier configuration
-├── tsconfig.json              # TS config references
-├── tsconfig.app.json          # TS config for development/IDE
-├── tsconfig.build.json        # TS config for library build
-├── tsconfig.node.json         # TS config for Node files
-├── vite.config.ts             # Vite: lib mode + Vitest + Storybook
-└── package.json
+- Reusable UI primitives for React apps
+- Design tokens with a consistent visual language
+- Type-safe components for TypeScript projects
+- Library build output ready for npm publishing
+- Storybook as the component playground and documentation surface
+
+## Quick start
+
+```bash
+pnpm install
+pnpm storybook
 ```
 
-## Scripts
+## Documentation
 
-| Command          | Description                        |
-| ---------------- | ---------------------------------- |
-| `pnpm dev`       | Start the Vite development server  |
-| `pnpm build`     | Build the library to `dist/`       |
-| `pnpm lint`      | Run ESLint                         |
-| `pnpm format`    | Format code with Prettier          |
-| `pnpm storybook` | Start Storybook on port 6006       |
-| `pnpm commit`    | Interactive commit with Commitizen |
+- [Development guide](docs/development.md) — project structure, scripts, and local workflow
+- [Usage guide](docs/usage.md) — installation and import examples
+- [Contributing guide](CONTRIBUTING.md) — component work, branching, commit conventions, and PR flow
+- [Deployment guide](DEPLOYMENT.md) — release process and npm publishing
 
-## Releases
+## Main commands
 
-Commits merged into `main` do not publish automatically. A maintainer publishes the accumulated changes by manually running the `Release` workflow from GitHub Actions on the `main` branch. See the [publishing guide](DEPLOYMENT.md) for the full release process and version bump rules.
+| Command          | Description                     |
+| ---------------- | ------------------------------- |
+| `pnpm install`   | Install dependencies            |
+| `pnpm dev`       | Run the Vite app locally        |
+| `pnpm build`     | Build the library               |
+| `pnpm lint`      | Run ESLint                      |
+| `pnpm storybook` | Start Storybook                 |
+| `pnpm commit`    | Interactive conventional commit |
 
-## Build output
+## License
 
-Running `pnpm build` generates the `dist/` folder with:
+This project is licensed under the [MIT License](LICENSE).
 
-```
-dist/
-├── components/         # Type declarations (.d.ts)
-├── styles/
-│   └── flowi.css       # Tokens + component styles
-├── index.mjs           # ES Modules
-├── index.cjs           # CommonJS
-└── index.d.ts          # Types entry point
-```
+## Community and security
 
-## Usage
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security policy](SECURITY.md)
 
-```tsx
-// Import styles (tokens + component CSS)
-import '@flowi/ui/styles'
-
-// Import components
-import { Button } from '@flowi/ui'
-
-function App() {
-  return (
-    <Button variant='primary' size='md'>
-      Click me
-    </Button>
-  )
-}
-```
-
-## Stack
-
-- **React 19** — UI library
-- **TypeScript 5.8** — Type safety
-- **Vite 7** — Bundler (library mode)
-- **Storybook 9** — Component development and documentation
-- **ESLint + Prettier** — Linting and formatting
-- **Husky + lint-staged** — Git hooks
-- **Commitlint + Commitizen** — Conventional commits
+If you want to contribute or understand the release workflow, see [CONTRIBUTING.md](CONTRIBUTING.md) and [DEPLOYMENT.md](DEPLOYMENT.md).
