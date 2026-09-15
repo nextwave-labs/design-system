@@ -15,6 +15,7 @@ export default {
     [
       '@semantic-release/npm',
       {
+        provenance: true,
         prepareCmd: 'pnpm build',
       },
     ],
