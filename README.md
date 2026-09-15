@@ -45,6 +45,10 @@ flowi/
 | `pnpm storybook` | Start Storybook on port 6006       |
 | `pnpm commit`    | Interactive commit with Commitizen |
 
+## Releases
+
+Commits merged into `main` do not publish automatically. A maintainer publishes the accumulated changes by manually running the `Release` workflow from GitHub Actions on the `main` branch. See the [publishing guide](DEPLOYMENT.md) for the full release process and version bump rules.
+
 ## Build output
 
 Running `pnpm build` generates the `dist/` folder with:

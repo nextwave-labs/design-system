@@ -68,7 +68,7 @@ Then on GitHub, open a **Pull Request** targeting the `feat/<component>` branch 
 
 ### 5. Review and merge
 
-A maintainer will review the PR and merge it into the `feat/` branch. When the feature is ready, a maintainer will merge the `feat/` branch into `main`, where semantic-release handles versioning and publishing to npm automatically.
+A maintainer will review the PR and merge it into the `feat/` branch. When the feature is ready, a maintainer will merge the `feat/` branch into `main`. Publishing happens later, when a maintainer manually runs the `Release` workflow from GitHub Actions.
 
 See the [release and npm publishing guide](DEPLOYMENT.md) for the required secrets, permissions, and post-merge verification steps.
 

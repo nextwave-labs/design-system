@@ -1,6 +1,6 @@
 # Publishing to npm
 
-This project uses [semantic-release](https://github.com/semantic-release/semantic-release) to automate versioning and publishing to npm. The flow runs automatically on every push to `main` via GitHub Actions.
+This project uses [semantic-release](https://github.com/semantic-release/semantic-release) to automate versioning and publishing to npm. Releases are created only when a maintainer manually runs the `Release` workflow from GitHub Actions.
 
 ## Release checklist
 
@@ -31,9 +31,10 @@ The automatic `GITHUB_TOKEN` does not need to be created as a repository secret.
    git push origin your-branch
    ```
 
-3. Open a pull request and merge it into `main`. A push to `main` starts the `Release` workflow.
-4. Open the repository's **Actions** tab and inspect the `Release` workflow. The `Install dependencies`, `Lint`, `Build`, and `Release` steps must pass.
-5. After a successful release, verify the package and GitHub Release:
+3. Open a pull request and merge it into `main`. Merging to `main` does not publish a release by itself.
+4. When the current `main` commit is ready to publish, open the repository's **Actions** tab, select the `Release` workflow, choose the `main` branch, and click **Run workflow**.
+5. Inspect the `Release` workflow run. The `Install dependencies`, `Lint`, `Build`, and `Release` steps must pass.
+6. After a successful release, verify the package and GitHub Release:
 
    ```bash
    pnpm view @flowi/ui version
@@ -41,15 +42,33 @@ The automatic `GITHUB_TOKEN` does not need to be created as a repository secret.
 
    The workflow also creates or updates `CHANGELOG.md` and commits the generated version changes back to `main`.
 
+## Release behavior
+
+Merging or pushing commits to `main` does not publish the package. Those commits remain pending for the next release until a maintainer manually runs the `Release` workflow.
+
+When the workflow runs, `semantic-release` creates one release from all unreleased commits since the previous version tag. It does not create one release per commit.
+
+Examples:
+
+| Pending commits since last release       | Version bump | Example result        |
+| ---------------------------------------- | ------------ | --------------------- |
+| `fix:`, `fix:`, `fix:`                   | Patch        | `1.0.1` → `1.0.2`     |
+| `fix:`, `feat:`, `feat:`                 | Minor        | `1.0.1` → `1.1.0`     |
+| `fix:`, `feat:`, `feat!:`                | Major        | `1.0.1` → `2.0.0`     |
+| Commits without release-relevant changes | No release   | Current version stays |
+
+The final Git tag is created by `semantic-release` using the package version, for example `v1.1.0`. Maintainers do not need to create release tags manually.
+
 ## How it works
 
-1. A push (or PR merge) is made to `main`
-2. GitHub Actions runs the `.github/workflows/release.yml` workflow
-3. `semantic-release` analyzes commits since the last release:
+1. Changes are merged to `main`
+2. A maintainer manually runs the `Release` workflow from the **Actions** tab using the `main` branch
+3. GitHub Actions runs `.github/workflows/release.yml`
+4. `semantic-release` analyzes commits since the last release:
    - `fix:` → **patch** bump (0.1.0 → 0.1.1)
    - `feat:` → **minor** bump (0.1.0 → 0.2.0)
    - `feat!:` or `BREAKING CHANGE:` → **major** bump (0.1.0 → 1.0.0)
-4. If there are commits that warrant a release, the plugins run in order:
+5. If there are commits that warrant a release, the plugins run in order:
    1. Generates release notes
    2. Updates `CHANGELOG.md`
    3. Runs `pnpm build` and publishes to npm
