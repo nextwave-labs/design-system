@@ -33,7 +33,7 @@ Configure in **Settings → Secrets and variables → Actions**:
 Verify that the scoped package name is available on npm:
 
 ```bash
-npm view @flowi/ui
+pnpm view @flowi/ui
 ```
 
 The package is configured as public through `publishConfig.access` in `package.json`.

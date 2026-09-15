@@ -7,7 +7,7 @@ Thanks for your interest in contributing. This guide explains how to set up your
 ### 1. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 This also sets up Husky git hooks automatically (`prepare` script).
@@ -15,9 +15,9 @@ This also sets up Husky git hooks automatically (`prepare` script).
 ### 2. Verify everything works
 
 ```bash
-npm run build
-npm run lint
-npm run storybook
+pnpm build
+pnpm lint
+pnpm storybook
 ```
 
 ## Workflow
@@ -42,7 +42,7 @@ See the [Adding a new component](#adding-a-new-component) or [Modifying an exist
 The project uses [Conventional Commits](https://www.conventionalcommits.org/). You can use the interactive prompt:
 
 ```bash
-npm run commit
+pnpm commit
 ```
 
 Or write the message manually following the format:
@@ -171,9 +171,9 @@ export const Default: Story = {
 ### 7. Verify
 
 ```bash
-npm run storybook    # review the component visually
-npm run build        # verify dist/ generates correctly
-npm run lint         # no errors
+pnpm storybook    # review the component visually
+pnpm build        # verify dist/ generates correctly
+pnpm lint         # no errors
 ```
 
 ---
@@ -205,9 +205,9 @@ Design tokens live in `src/styles/tokens.css`. If you need a new token:
 Always before committing:
 
 ```bash
-npm run storybook    # review changes visually
-npm run build        # verify it compiles
-npm run lint         # no errors
+pnpm storybook    # review changes visually
+pnpm build        # verify it compiles
+pnpm lint         # no errors
 ```
 
 ---
@@ -221,4 +221,4 @@ npm run lint         # no errors
 - [ ] `:disabled` handled if applicable
 - [ ] Barrel exports updated (`component/index.ts` + `components/index.ts`)
 - [ ] Story created with `tags: ['autodocs']`
-- [ ] `npm run build` and `npm run lint` pass
+- [ ] `pnpm build` and `pnpm lint` pass

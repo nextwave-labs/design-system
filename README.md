@@ -47,7 +47,7 @@ flowi/
 
 ## Build output
 
-Running `npm run build` generates the `dist/` folder with:
+Running `pnpm build` generates the `dist/` folder with:
 
 ```
 dist/

@@ -8,14 +8,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-| Command                   | Purpose                                                    |
-| ------------------------- | ---------------------------------------------------------- |
-| `npm run build`           | Build library (`tsc` declarations + Vite bundle) → `dist/` |
-| `npm run lint`            | ESLint (flat config)                                       |
-| `npm run format`          | Prettier (no semis, single quotes)                         |
-| `npm run storybook`       | Storybook dev server on port 6006                          |
-| `npm run build-storybook` | Static Storybook build                                     |
-| `npm run commit`          | Interactive conventional commit via Commitizen             |
+| Command                | Purpose                                                    |
+| ---------------------- | ---------------------------------------------------------- |
+| `pnpm build`           | Build library (`tsc` declarations + Vite bundle) → `dist/` |
+| `pnpm lint`            | ESLint (flat config)                                       |
+| `pnpm format`          | Prettier (no semis, single quotes)                         |
+| `pnpm storybook`       | Storybook dev server on port 6006                          |
+| `pnpm build-storybook` | Static Storybook build                                     |
+| `pnpm commit`          | Interactive conventional commit via Commitizen             |
 
 There is no standalone unit test command yet. Story-based tests run through Vitest + Playwright via the Storybook addon (configured in `vite.config.ts`).
 
@@ -61,7 +61,7 @@ React, react-dom, and react/jsx-runtime are externalized — not bundled. Peer d
 
 ## Conventions
 
-- **Commits**: Conventional Commits enforced by commitlint + Husky `commit-msg` hook. Use `npm run commit` for the interactive prompt.
+- **Commits**: Conventional Commits enforced by commitlint + Husky `commit-msg` hook. Use `pnpm commit` for the interactive prompt.
 - **Pre-commit**: Husky runs lint-staged (ESLint fix + Prettier on TS/JS files, Prettier on JSON/CSS/MD).
 - **Prettier**: No semicolons, single quotes, single JSX quotes, ES5 trailing commas.
 - **ESLint**: Flat config with typescript-eslint, react-hooks, react-refresh, and storybook plugins.
