@@ -10,13 +10,13 @@ import { globalIgnores } from 'eslint/config'
 
 export default tseslint.config(
   [
-    globalIgnores(['dist']),
+    globalIgnores(['dist', 'storybook-static']),
     {
       files: ['**/*.{ts,tsx}'],
       extends: [
         js.configs.recommended,
         tseslint.configs.recommended,
-        reactHooks.configs['recommended-latest'],
+        reactHooks.configs.flat['recommended-latest'],
         reactRefresh.configs.vite,
       ],
       languageOptions: {
