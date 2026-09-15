@@ -36,14 +36,14 @@ flowi/
 
 ## Scripts
 
-| Command             | Description                        |
-| ------------------- | ---------------------------------- |
-| `npm run dev`       | Start the Vite development server  |
-| `npm run build`     | Build the library to `dist/`       |
-| `npm run lint`      | Run ESLint                         |
-| `npm run format`    | Format code with Prettier          |
-| `npm run storybook` | Start Storybook on port 6006       |
-| `npm run commit`    | Interactive commit with Commitizen |
+| Command          | Description                        |
+| ---------------- | ---------------------------------- |
+| `pnpm dev`       | Start the Vite development server  |
+| `pnpm build`     | Build the library to `dist/`       |
+| `pnpm lint`      | Run ESLint                         |
+| `pnpm format`    | Format code with Prettier          |
+| `pnpm storybook` | Start Storybook on port 6006       |
+| `pnpm commit`    | Interactive commit with Commitizen |
 
 ## Build output
 
@@ -63,10 +63,10 @@ dist/
 
 ```tsx
 // Import styles (tokens + component CSS)
-import 'flowi/styles'
+import '@flowi/ui/styles'
 
 // Import components
-import { Button } from 'flowi'
+import { Button } from '@flowi/ui'
 
 function App() {
   return (

@@ -13,9 +13,9 @@ This project uses [semantic-release](https://github.com/semantic-release/semanti
 4. If there are commits that warrant a release, the plugins run in order:
    1. Generates release notes
    2. Updates `CHANGELOG.md`
-   3. Runs `npm run build` and publishes to npm
+   3. Runs `pnpm build` and publishes to npm
    4. Creates a GitHub Release with the notes
-   5. Commits `CHANGELOG.md`, `package.json`, and `package-lock.json` (version bump) back to the repo
+   5. Commits `CHANGELOG.md`, `package.json`, and `pnpm-lock.yaml` (version bump) back to the repo
 
 ## Requirements
 
@@ -23,30 +23,30 @@ This project uses [semantic-release](https://github.com/semantic-release/semanti
 
 Configure in **Settings → Secrets and variables → Actions**:
 
-| Secret         | Description                                            |
-| -------------- | ------------------------------------------------------ |
-| `NPM_TOKEN`    | npm token with publish permission (`npm token create`) |
-| `GITHUB_TOKEN` | Already available by default in GitHub Actions         |
+| Secret         | Description                                                     |
+| -------------- | --------------------------------------------------------------- |
+| `NPM_TOKEN`    | npm token with publish permission for the `@flowi` organization |
+| `GITHUB_TOKEN` | Already available by default in GitHub Actions                  |
 
 ### Package name
 
-Verify that the name `flowi` is available on npm:
+Verify that the scoped package name is available on npm:
 
 ```bash
-npm view flowi
+npm view @flowi/ui
 ```
 
-If it's already taken, change the `name` field in `package.json` (e.g., `@your-org/flowi`).
+The package is configured as public through `publishConfig.access` in `package.json`.
 
 ## Install in another project
 
 ```bash
-npm install flowi
+pnpm add @flowi/ui
 ```
 
 ```tsx
-import 'flowi/styles'
-import { Button } from 'flowi'
+import '@flowi/ui/styles'
+import { Button } from '@flowi/ui'
 ```
 
 ## Run a manual release (dry-run)
@@ -54,5 +54,5 @@ import { Button } from 'flowi'
 To simulate a release without publishing:
 
 ```bash
-npx semantic-release --dry-run --no-ci
+pnpm exec semantic-release --dry-run --no-ci
 ```
