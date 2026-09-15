@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/nextwave-labs/design-system/compare/v1.0.0...v1.0.1) (2026-09-15)
+
+### Bug Fixes
+
+- use native dirname in vite config ([2642bca](https://github.com/nextwave-labs/design-system/commit/2642bca60d51a82698bff47024749cb188034723))
+
 # 1.0.0 (2026-09-15)
 
 ### Features
