@@ -11,7 +11,7 @@ pnpm add @flowi/ui
 ## Import styles
 
 ```tsx
-import '@flowi/ui/styles'
+import '@flowi/ui/styles.css'
 ```
 
 ## Import a component
