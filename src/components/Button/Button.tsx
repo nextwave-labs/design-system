@@ -1,7 +1,7 @@
+'use client'
 import styles from './Button.module.css'
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary'
   size?: 'sm' | 'md' | 'lg'
 }
