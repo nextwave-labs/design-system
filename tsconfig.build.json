@@ -30,5 +30,5 @@
     "noUncheckedSideEffectImports": true
   },
   "include": ["src/index.ts", "src/components/**/*", "src/css-modules.d.ts"],
-  "exclude": ["src/stories", "src/**/*.test.*", "src/**/*.spec.*"]
+  "exclude": ["src/**/*.stories.*", "src/**/*.test.*", "src/**/*.spec.*"]
 }
