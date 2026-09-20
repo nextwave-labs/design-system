@@ -1,0 +1,113 @@
+/*
+ * Tokens semánticos de tipografía.
+ * ⚠️ VALORES PROVISIONALES: tamaños y line-heights estimados a partir de la
+ * jerarquía visual de la spec de diseño (Inter, con los pesos indicados),
+ * NO son los valores exactos de Figma. Reemplazar con las cifras reales
+ * (px/line-height del inspector de Figma) antes de v1.
+ *
+ * Cada estilo expone 3 propiedades: -size, -weight, -line-height.
+ */
+:root {
+  /* Title */
+  --flowi-text-title-xl-size: var(--flowi-font-size-40);
+  --flowi-text-title-xl-weight: var(--flowi-font-weight-extrabold);
+  --flowi-text-title-xl-line-height: var(--flowi-line-height-48);
+
+  --flowi-text-title-l-size: var(--flowi-font-size-32);
+  --flowi-text-title-l-weight: var(--flowi-font-weight-bold);
+  --flowi-text-title-l-line-height: var(--flowi-line-height-40);
+
+  --flowi-text-title-m-size: var(--flowi-font-size-24);
+  --flowi-text-title-m-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-title-m-line-height: var(--flowi-line-height-32);
+
+  --flowi-text-title-s-size: var(--flowi-font-size-20);
+  --flowi-text-title-s-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-title-s-line-height: var(--flowi-line-height-28);
+
+  --flowi-text-title-xs-size: var(--flowi-font-size-18);
+  --flowi-text-title-xs-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-title-xs-line-height: var(--flowi-line-height-24);
+
+  /* Subtitle */
+  --flowi-text-subtitle-l-size: var(--flowi-font-size-18);
+  --flowi-text-subtitle-l-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-subtitle-l-line-height: var(--flowi-line-height-26);
+
+  --flowi-text-subtitle-m-size: var(--flowi-font-size-16);
+  --flowi-text-subtitle-m-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-subtitle-m-line-height: var(--flowi-line-height-24);
+
+  --flowi-text-subtitle-s-size: var(--flowi-font-size-14);
+  --flowi-text-subtitle-s-weight: var(--flowi-font-weight-regular);
+  --flowi-text-subtitle-s-line-height: var(--flowi-line-height-20);
+
+  --flowi-text-subtitle-xs-size: var(--flowi-font-size-12);
+  --flowi-text-subtitle-xs-weight: var(--flowi-font-weight-regular);
+  --flowi-text-subtitle-xs-line-height: var(--flowi-line-height-18);
+
+  /* Body */
+  --flowi-text-body-l-size: var(--flowi-font-size-16);
+  --flowi-text-body-l-weight: var(--flowi-font-weight-medium);
+  --flowi-text-body-l-line-height: var(--flowi-line-height-24);
+
+  --flowi-text-body-m-size: var(--flowi-font-size-14);
+  --flowi-text-body-m-weight: var(--flowi-font-weight-regular);
+  --flowi-text-body-m-line-height: var(--flowi-line-height-22);
+
+  --flowi-text-body-s-size: var(--flowi-font-size-13);
+  --flowi-text-body-s-weight: var(--flowi-font-weight-regular);
+  --flowi-text-body-s-line-height: var(--flowi-line-height-20);
+
+  --flowi-text-body-xs-size: var(--flowi-font-size-12);
+  --flowi-text-body-xs-weight: var(--flowi-font-weight-regular);
+  --flowi-text-body-xs-line-height: var(--flowi-line-height-18);
+
+  /* Button (S/M reutilizan lo que ya usa el componente Button hoy: 14/16px) */
+  --flowi-text-button-xl-size: var(--flowi-font-size-18);
+  --flowi-text-button-xl-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-button-xl-line-height: var(--flowi-line-height-28);
+
+  --flowi-text-button-l-size: var(--flowi-font-size-16);
+  --flowi-text-button-l-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-button-l-line-height: var(--flowi-line-height-24);
+
+  --flowi-text-button-m-size: var(--flowi-font-size-14);
+  --flowi-text-button-m-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-button-m-line-height: var(--flowi-line-height-20);
+
+  --flowi-text-button-s-size: var(--flowi-font-size-13);
+  --flowi-text-button-s-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-button-s-line-height: var(--flowi-line-height-16);
+
+  /* Caption */
+  --flowi-text-caption-l-size: var(--flowi-font-size-12);
+  --flowi-text-caption-l-weight: var(--flowi-font-weight-medium);
+  --flowi-text-caption-l-line-height: var(--flowi-line-height-16);
+
+  --flowi-text-caption-m-size: var(--flowi-font-size-11);
+  --flowi-text-caption-m-weight: var(--flowi-font-weight-regular);
+  --flowi-text-caption-m-line-height: var(--flowi-line-height-16);
+
+  --flowi-text-caption-s-size: var(--flowi-font-size-10);
+  --flowi-text-caption-s-weight: var(--flowi-font-weight-regular);
+  --flowi-text-caption-s-line-height: var(--flowi-line-height-14);
+
+  /* Overline */
+  --flowi-text-overline-l-size: var(--flowi-font-size-12);
+  --flowi-text-overline-l-weight: var(--flowi-font-weight-semibold);
+  --flowi-text-overline-l-line-height: var(--flowi-line-height-16);
+
+  --flowi-text-overline-s-size: var(--flowi-font-size-10);
+  --flowi-text-overline-s-weight: var(--flowi-font-weight-medium);
+  --flowi-text-overline-s-line-height: var(--flowi-line-height-14);
+
+  /* Small text */
+  --flowi-text-small-l-size: var(--flowi-font-size-12);
+  --flowi-text-small-l-weight: var(--flowi-font-weight-regular);
+  --flowi-text-small-l-line-height: var(--flowi-line-height-16);
+
+  --flowi-text-small-s-size: var(--flowi-font-size-11);
+  --flowi-text-small-s-weight: var(--flowi-font-weight-regular);
+  --flowi-text-small-s-line-height: var(--flowi-line-height-14);
+}

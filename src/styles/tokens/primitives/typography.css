@@ -1,0 +1,38 @@
+:root {
+  --flowi-font-family:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Pesos */
+  --flowi-font-weight-regular: 400;
+  --flowi-font-weight-medium: 500;
+  --flowi-font-weight-semibold: 600;
+  --flowi-font-weight-bold: 700;
+  --flowi-font-weight-extrabold: 800;
+
+  /* Escala de tamaño (px reales, expresados en rem sobre base 16px) */
+  --flowi-font-size-10: 0.625rem;
+  --flowi-font-size-11: 0.6875rem;
+  --flowi-font-size-12: 0.75rem;
+  --flowi-font-size-13: 0.8125rem;
+  --flowi-font-size-14: 0.875rem;
+  --flowi-font-size-15: 0.9375rem;
+  --flowi-font-size-16: 1rem;
+  --flowi-font-size-18: 1.125rem;
+  --flowi-font-size-20: 1.25rem;
+  --flowi-font-size-24: 1.5rem;
+  --flowi-font-size-32: 2rem;
+  --flowi-font-size-40: 2.5rem;
+
+  /* Escala de line-height (a juego con los tamaños de arriba) */
+  --flowi-line-height-14: 0.875rem;
+  --flowi-line-height-16: 1rem;
+  --flowi-line-height-18: 1.125rem;
+  --flowi-line-height-20: 1.25rem;
+  --flowi-line-height-22: 1.375rem;
+  --flowi-line-height-24: 1.5rem;
+  --flowi-line-height-26: 1.625rem;
+  --flowi-line-height-28: 1.75rem;
+  --flowi-line-height-32: 2rem;
+  --flowi-line-height-40: 2.5rem;
+  --flowi-line-height-48: 3rem;
+}

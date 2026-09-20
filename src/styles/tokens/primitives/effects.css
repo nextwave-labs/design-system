@@ -1,0 +1,16 @@
+:root {
+  /* Opacidad */
+  --flowi-opacity-disabled: 0.5;
+
+  /* Anchos de borde */
+  --flowi-border-width-thin: 1px;
+  --flowi-border-width-thick: 2px;
+
+  /* Anillo de foco (accesibilidad de teclado) */
+  --flowi-focus-ring-width: 2px;
+  --flowi-focus-ring-offset: 2px;
+
+  /* Movimiento */
+  --flowi-motion-duration-fast: 150ms;
+  --flowi-motion-easing-standard: ease-in-out;
+}
