@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from './Button'
 
 const meta: Meta<typeof Button> = {
@@ -13,7 +13,6 @@ const meta: Meta<typeof Button> = {
     size: {
       control: 'radio',
       defaultValue: 'md',
-      defaultRadio: 'md',
       options: ['sm', 'md', 'lg'],
     },
   },
