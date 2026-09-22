@@ -16,9 +16,9 @@ flowi/
 │   │   ├── Button/
 │   │   │   ├── Button.tsx          # Button component
 │   │   │   ├── Button.module.css   # Button styles (CSS Modules)
+│   │   │   ├── Button.stories.ts   # Storybook story (not part of the build)
 │   │   │   └── index.ts           # Component barrel export
 │   │   └── index.ts               # Barrel export for all components
-│   ├── stories/                   # Storybook stories (playground)
 │   ├── styles/
 │   │   └── tokens.css             # Design tokens (--flowi-*)
 │   ├── css-modules.d.ts           # CSS Modules type declarations
@@ -44,7 +44,6 @@ flowi/
 | Command                | Description                                 |
 | ---------------------- | ------------------------------------------- |
 | `pnpm install`         | Install dependencies and set up Husky hooks |
-| `pnpm dev`             | Start the Vite development server           |
 | `pnpm build`           | Build the library to `dist/`                |
 | `pnpm lint`            | Run ESLint                                  |
 | `pnpm format`          | Format code with Prettier                   |
@@ -90,3 +89,5 @@ pnpm storybook
 ```
 
 This keeps the repo consistent with the CI and release workflow.
+
+To verify the packaged output rather than the source, see [Test the built library locally](../README.md#test-the-built-library-locally) in the README.

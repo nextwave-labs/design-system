@@ -24,7 +24,7 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./styles": "./dist/styles/flowi.css"
+    "./styles.css": "./dist/styles/flowi.css"
   },
   "files": [
     "dist"
@@ -47,13 +47,11 @@
     }
   },
   "scripts": {
-    "dev": "vite",
     "clean": "rm -rf dist",
     "prebuild": "pnpm clean",
     "build": "tsc -p tsconfig.build.json && vite build",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky",

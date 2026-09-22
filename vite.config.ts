@@ -19,7 +19,12 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
-        assetFileNames: 'styles/[name][extname]',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'styles/flowi.css'
+          }
+          return 'styles/[name][extname]'
+        },
       },
     },
     cssCodeSplit: false,

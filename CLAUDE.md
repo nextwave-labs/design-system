@@ -32,18 +32,19 @@ Vite is configured with `emptyOutDir: false` so the Vite step preserves the decl
 ### TypeScript Configs
 
 - **`tsconfig.app.json`** — IDE/dev use. Has `noEmit: true` and `allowImportingTsExtensions`.
-- **`tsconfig.build.json`** — Library build. Has `emitDeclarationOnly: true`. Excludes stories and tests.
+- **`tsconfig.build.json`** — Library build. Has `emitDeclarationOnly: true`. Excludes `*.stories.*` and `*.test.*`/`*.spec.*` files anywhere under `src/`.
 - **`tsconfig.node.json`** — For `vite.config.ts` only.
 - **`tsconfig.json`** — Project references to all three above.
 
 ### Component Pattern
 
-Each component lives in `src/components/<Name>/` with three files:
+Each component lives in `src/components/<Name>/` with four files:
 
 ```
 Button/
   Button.tsx          # Component (extends native HTML element attributes)
   Button.module.css   # Styles using --flowi-* tokens
+  Button.stories.ts   # Storybook story, imports the real component (not part of the library build)
   index.ts            # Barrel: exports component + props type
 ```
 
@@ -65,4 +66,4 @@ React, react-dom, and react/jsx-runtime are externalized — not bundled. Peer d
 - **Pre-commit**: Husky runs lint-staged (ESLint fix + Prettier on TS/JS files, Prettier on JSON/CSS/MD).
 - **Prettier**: No semicolons, single quotes, single JSX quotes, ES5 trailing commas.
 - **ESLint**: Flat config with typescript-eslint, react-hooks, react-refresh, and storybook plugins.
-- **`src/stories/`**: Storybook playground examples (Button, Header, Page). Not part of the library build.
+- **Stories**: live next to each component as `<Name>.stories.ts` inside `src/components/<Name>/`, importing the component directly (not part of the library build). The default Storybook onboarding page lives at `.storybook/Configure.mdx`.

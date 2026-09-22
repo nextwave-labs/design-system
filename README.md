@@ -44,12 +44,81 @@ pnpm storybook
 | Command                | Description                     |
 | ---------------------- | ------------------------------- |
 | `pnpm install`         | Install dependencies            |
-| `pnpm dev`             | Run the Vite app locally        |
 | `pnpm build`           | Build the library               |
 | `pnpm lint`            | Run ESLint                      |
 | `pnpm storybook`       | Start Storybook                 |
 | `pnpm build-storybook` | Build static Storybook output   |
 | `pnpm commit`          | Interactive conventional commit |
+
+## Test the built library locally
+
+Storybook renders components straight from `src/`, so it never exercises what actually ships. To verify the packaged output — the `exports` map, the type declarations, and the extracted CSS bundle — install the built tarball into a throwaway project.
+
+### 1. Build and pack
+
+From the repository root:
+
+```bash
+pnpm build
+pnpm pack
+```
+
+`pnpm pack` does **not** build. There is no `prepack` script, so it only tarballs whatever `dist/` currently contains — always run `pnpm build` first. The result is written to the repo root, named from the package name and version, so `@flowi/ui@1.0.1` produces `flowi-ui-1.0.1.tgz`.
+
+### 2. Create a test project
+
+Outside the repository:
+
+```bash
+pnpm create vite@latest flowi-test --template react-ts
+cd flowi-test
+pnpm install
+```
+
+### 3. Install the library from the local tarball
+
+```bash
+pnpm add ../flowi/flowi-ui-1.0.1.tgz
+```
+
+Or with an absolute path, if the relative one is awkward:
+
+```bash
+pnpm add /absolute/path/to/flowi/flowi-ui-1.0.1.tgz
+```
+
+pnpm records this as a `file:` dependency in the test project's `package.json`. That is expected here, but it should never be committed in a real consumer.
+
+### 4. Use a component
+
+Replace `src/App.tsx` in the test project:
+
+```tsx
+import '@flowi/ui/styles.css'
+import { Button } from '@flowi/ui'
+
+function App() {
+  return <Button variant='primary'>Click me</Button>
+}
+
+export default App
+```
+
+Then start it:
+
+```bash
+pnpm dev
+```
+
+### 5. What a passing test looks like
+
+- The button renders with Flowi styling — the `./styles.css` export resolves and `dist/styles/flowi.css` contains the tokens and component styles.
+- `variant` and `size` autocomplete in the editor — `dist/index.d.ts` resolves through the `types` condition.
+- `pnpm build` succeeds in the test project — the ESM entry is valid and React stayed externalized as a peer dependency.
+
+### Re-testing after a change
+
+Run `pnpm build && pnpm pack` in the repository again, then re-run `pnpm add <path-to-tgz>` in the test project. If the version has not changed, the tarball filename is identical and pnpm may serve a cached copy; re-running `pnpm add` against the tarball path is the reliable way to pick up the new contents.
 
 ## License
 
