@@ -20,7 +20,8 @@ flowi/
 │   │   │   └── index.ts           # Component barrel export
 │   │   └── index.ts               # Barrel export for all components
 │   ├── styles/
-│   │   └── tokens.css             # Design tokens (--flowi-*)
+│   │   ├── tokens.css             # Design token entry point
+│   │   └── tokens/                # Primitive and semantic token definitions
 │   ├── css-modules.d.ts           # CSS Modules type declarations
 │   └── index.ts                   # Library entry point
 ├── commitlint.config.js       # commitlint configuration
@@ -50,6 +51,32 @@ flowi/
 | `pnpm storybook`       | Start Storybook on port 6006                |
 | `pnpm build-storybook` | Build the static Storybook site             |
 | `pnpm commit`          | Interactive commit with Commitizen          |
+
+## Creating a component
+
+Use the generator from the repository root with a PascalCase name:
+
+```bash
+make component NAME=Badge
+```
+
+The generator creates `Badge.tsx`, `Badge.module.css`, `Badge.stories.ts`, and `index.ts` under `src/components/Badge/`. It also creates `docs/components/badge.md`, adds the component to `docs/components/index.md`, and adds the component and its props type to both export barrels: `src/components/index.ts` and `src/index.ts`.
+
+The generated files are a starting point. Before opening a pull request:
+
+1. Replace the placeholder native element and props in the component.
+2. Style the component with `--flowi-*` tokens only.
+3. Add real Storybook controls and interaction assertions.
+4. Complete the generated page in `docs/components/badge.md`.
+5. Run `pnpm storybook` for visual review. The browser test project is configured for future automated execution, but it is not currently part of CI.
+
+The component name must start with an uppercase letter and contain only letters and numbers. The generator refuses to overwrite an existing component directory.
+
+## Token layers
+
+`src/styles/tokens.css` is the single token entry point. It imports primitive tokens first, then semantic tokens. Primitive tokens describe raw values such as palette colors, spacing, and typography scales; semantic tokens describe usage roles such as primary actions, text, surfaces, and feedback.
+
+Components should consume semantic tokens whenever a suitable token exists. Applications should override semantic tokens after importing `@flowi/ui/styles.css`, rather than coupling their theme to primitive values. Preserve the primitive-before-semantic import order when adding token files.
 
 ## Build output
 
@@ -85,9 +112,11 @@ Before opening a PR, run:
 pnpm install
 pnpm lint
 pnpm build
-pnpm storybook
+pnpm build-storybook
 ```
 
-This keeps the repo consistent with the CI and release workflow.
+This keeps the repo consistent with the current CI workflow, which runs `pnpm lint` and `pnpm build`.
+
+Story-based interaction checks are defined through the Storybook Vitest addon. Run `pnpm build-storybook` to verify the production Storybook build and use the accessibility panel when reviewing component stories. Accessibility checks are advisory because Storybook is configured with `test: 'todo'`.
 
 To verify the packaged output rather than the source, see [Test the built library locally](../README.md#test-the-built-library-locally) in the README.

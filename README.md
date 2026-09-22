@@ -31,11 +31,16 @@ pnpm install
 pnpm storybook
 ```
 
+Storybook is available at [http://localhost:6006](http://localhost:6006).
+
 ## Documentation
 
 - [Architecture guide](docs/architecture.md) — project structure and design decisions
 - [Development guide](docs/development.md) — scripts, tooling, and local workflow
 - [Usage guide](docs/usage.md) — installation and component import examples
+- [Component documentation](docs/components/index.md) — component catalog, APIs, and usage details
+- [Component development guide](docs/development.md#creating-a-component) — scaffold and test new components
+- [Troubleshooting guide](docs/troubleshooting.md) — common build, packaging, and Storybook issues
 - [Contributing guide](CONTRIBUTING.md) — contribution flow, branch strategy, and commit conventions
 - [Deployment guide](DEPLOYMENT.md) — release process and npm publishing
 
