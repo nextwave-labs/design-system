@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Flowi** is a React UI component library built with Vite in library mode. It outputs ES Modules, CommonJS, and TypeScript declarations. Components use CSS Modules with design tokens defined as CSS custom properties (`--flowi-*`).
 
+## Language policy
+
+All work in this repository must be written in English. Follow the canonical policy in [CONTRIBUTING.md](CONTRIBUTING.md), including its requirements for code, documentation, user-facing text, and collaboration content.
+
 ## Commands
 
 | Command                | Purpose                                                    |
