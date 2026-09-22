@@ -1,0 +1,6 @@
+:root {
+  --flowi-radius-sm: 0.25rem;
+  --flowi-radius-md: 0.375rem;
+  --flowi-radius-lg: 0.5rem;
+  --flowi-radius-full: 9999px;
+}

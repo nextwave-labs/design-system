@@ -1,0 +1,52 @@
+:root {
+  /* Blue (Primary color) */
+  --flowi-color-blue-50: #eaf0ff;
+  --flowi-color-blue-75: #a9c2ff;
+  --flowi-color-blue-100: #85a8ff;
+  --flowi-color-blue-200: #5183ff;
+  --flowi-color-blue-300: #2d69ff;
+  --flowi-color-blue-400: #1f4ab3;
+  --flowi-color-blue-500: #1b409c;
+
+  /* Green (Secondary colors) */
+  --flowi-color-green-50: #edf7f2;
+  --flowi-color-green-75: #b5dcca;
+  --flowi-color-green-100: #97ceb4;
+  --flowi-color-green-200: #6ab893;
+  --flowi-color-green-300: #4baa7d;
+  --flowi-color-green-400: #aa4052;
+  --flowi-color-green-500: #943847;
+
+  /* Slate / Dark blue (Secondary colors) */
+  --flowi-color-slate-50: #e9eaec;
+  --flowi-color-slate-75: #a6a7b2;
+  --flowi-color-slate-100: #828392;
+  --flowi-color-slate-200: #4c4d63;
+  --flowi-color-slate-300: #272943;
+  --flowi-color-slate-400: #a7657b;
+  --flowi-color-slate-500: #91586b;
+
+  /* Neutral gray */
+  --flowi-color-neutral-0: #fdfeff;
+  --flowi-color-neutral-50: #f2f2f2;
+  --flowi-color-neutral-100: #ddddde;
+  --flowi-color-neutral-200: #c7c7c8;
+  --flowi-color-neutral-300: #6d6d71;
+  --flowi-color-neutral-400: #404045;
+  --flowi-color-neutral-500: #1e1e24;
+
+  /* Error */
+  --flowi-color-error-50: #feeceb;
+  --flowi-color-error-100: #f6938c;
+  --flowi-color-error-500: #f04438;
+
+  /* Warning */
+  --flowi-color-warning-50: #fef4e6;
+  --flowi-color-warning-100: #fabf70;
+  --flowi-color-warning-500: #f79009;
+
+  /* Success */
+  --flowi-color-success-50: #e7f8f0;
+  --flowi-color-success-100: #76d5a9;
+  --flowi-color-success-500: #12b76a;
+}

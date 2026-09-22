@@ -1,0 +1,38 @@
+/*
+ * Tokens semánticos de color.
+ * Cada uno mapea un ROL de diseño hacia un primitivo.
+ * Estos son los nombres "seguros" de sobreescribir desde afuera
+ * (ver README: Personalización de marca).
+ */
+:root {
+  /* Acción primaria (botones, links, elementos interactivos principales) */
+  --flowi-color-action-primary: var(--flowi-color-blue-300);
+  --flowi-color-action-primary-hover: var(--flowi-color-blue-400);
+  --flowi-color-action-primary-active: var(--flowi-color-blue-500);
+
+  /* Texto sobre un fondo de acción primaria (ej. texto del botón primario) */
+  --flowi-color-text-on-action: var(--flowi-color-neutral-0);
+
+  /* Texto por defecto sobre superficies neutras */
+  --flowi-color-text-default: var(--flowi-color-neutral-400);
+
+  /* Superficies neutras (fondos de controles secundarios, cards, etc.) */
+  --flowi-color-surface: var(--flowi-color-neutral-0);
+  --flowi-color-surface-hover: var(--flowi-color-neutral-50);
+  --flowi-color-surface-active: var(--flowi-color-neutral-100);
+
+  /* Bordes */
+  --flowi-color-border: var(--flowi-color-neutral-100);
+  --flowi-color-border-hover: var(--flowi-color-neutral-200);
+
+  /* Anillo de foco (accesibilidad de teclado) */
+  --flowi-color-focus-ring: var(--flowi-color-blue-300);
+
+  /* Feedback (mensajes de estado, validación de formularios, alertas) */
+  --flowi-color-feedback-error: var(--flowi-color-error-500);
+  --flowi-color-feedback-error-subtle: var(--flowi-color-error-50);
+  --flowi-color-feedback-warning: var(--flowi-color-warning-500);
+  --flowi-color-feedback-warning-subtle: var(--flowi-color-warning-50);
+  --flowi-color-feedback-success: var(--flowi-color-success-500);
+  --flowi-color-feedback-success-subtle: var(--flowi-color-success-50);
+}
