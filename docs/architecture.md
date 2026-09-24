@@ -10,14 +10,17 @@ src/
 │   ├── Button/
 │   │   ├── Button.tsx
 │   │   ├── Button.module.css
+│   │   ├── Button.stories.ts
 │   │   └── index.ts
 │   └── index.ts
-├── stories/
 ├── styles/
-│   └── tokens.css
+│   ├── tokens.css
+│   └── tokens/
+│       ├── primitives/
+│       └── semantic/
 ├── css-modules.d.ts
 ├── index.ts
-└── main.tsx
+└── vite-env.d.ts
 ```
 
 ## Design approach
@@ -36,7 +39,7 @@ This keeps the library organized and easy to extend.
 
 The visual system is token-based:
 
-- design tokens live in `src/styles/tokens.css`
+- design tokens are composed from `src/styles/tokens.css` and the files under `src/styles/tokens/`
 - tokens use the `--flowi-*` prefix
 - components consume tokens through CSS Modules
 
@@ -44,7 +47,11 @@ This gives a single source of truth for spacing, color, typography, radii, and s
 
 ### Storybook
 
-The demo and documentation layer lives in `src/stories/` and is rendered by Storybook. This allows visual validation and interaction testing without affecting the library build.
+Stories live beside their components in `src/components/<Name>/` and are rendered by Storybook. This allows visual validation and interaction testing without affecting the library build.
+
+## Documentation
+
+`docs/usage.md` contains library-wide installation, theming, and package guidance. The component catalog lives at `docs/components/index.md`, while component-specific API and usage documentation belongs in `docs/components/<component>.md`, with one page per public component. Storybook stories remain the source for visual examples and interaction checks.
 
 ## Build and distribution
 
@@ -61,7 +68,7 @@ The entry point is `src/index.ts`, which exposes the library publicly. The build
 
 Publishing is handled by `semantic-release` and GitHub Actions. The project is designed for a controlled release flow:
 
-- maintainers merge to the release branch or main depending on workflow
+- maintainers merge changes to `main`
 - a maintainer runs the Release workflow manually
 - semantic-release bumps versions and publishes to npm
 
@@ -71,7 +78,7 @@ This structure keeps responsibilities separate:
 
 - `components/` = component API and behavior
 - `styles/` = visual design tokens
-- `stories/` = demos and docs
+- `*.stories.ts` = demos and docs next to each component
 - `dist/` = packaged library output
 
 That separation is helpful for an open-source component library because it keeps the codebase easier to understand, contribute to, and publish.

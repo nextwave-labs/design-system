@@ -55,7 +55,7 @@
   background-color: var(--flowi-color-surface-active);
 }
 
-/* Sizes — usan la escala semántica "button" (button-s/m/l/xl) */
+/* Sizes use the semantic "button" scale (button-s/m/l/xl) */
 
 .sm {
   padding: var(--flowi-spacing-xs) var(--flowi-spacing-sm);

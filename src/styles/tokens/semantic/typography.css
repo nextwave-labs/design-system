@@ -1,11 +1,11 @@
 /*
- * Tokens semánticos de tipografía.
- * ⚠️ VALORES PROVISIONALES: tamaños y line-heights estimados a partir de la
- * jerarquía visual de la spec de diseño (Inter, con los pesos indicados),
- * NO son los valores exactos de Figma. Reemplazar con las cifras reales
- * (px/line-height del inspector de Figma) antes de v1.
+ * Semantic typography tokens.
+ * PROVISIONAL VALUES: sizes and line-heights estimated from the visual
+ * hierarchy in the design spec (Inter with the indicated weights), and not
+ * the exact Figma values. Replace them with the actual values
+ * (px/line-height from the Figma inspector) before v1.
  *
- * Cada estilo expone 3 propiedades: -size, -weight, -line-height.
+ * Each style exposes three properties: -size, -weight, and -line-height.
  */
 :root {
   /* Title */
@@ -63,7 +63,7 @@
   --flowi-text-body-xs-weight: var(--flowi-font-weight-regular);
   --flowi-text-body-xs-line-height: var(--flowi-line-height-18);
 
-  /* Button (S/M reutilizan lo que ya usa el componente Button hoy: 14/16px) */
+  /* Button (S/M reuse the values currently used by the Button component: 14/16px) */
   --flowi-text-button-xl-size: var(--flowi-font-size-18);
   --flowi-text-button-xl-weight: var(--flowi-font-weight-semibold);
   --flowi-text-button-xl-line-height: var(--flowi-line-height-28);

@@ -4,6 +4,12 @@ Thanks for your interest in contributing. This guide explains how to set up your
 
 Before opening a PR, please also read the project’s [Code of Conduct](CODE_OF_CONDUCT.md) and [Security policy](SECURITY.md).
 
+## Language policy
+
+All work in this repository must be written in English. This includes source code, identifiers, comments, documentation, examples, Storybook stories, user-facing text, commit messages, pull requests, and issue-related content.
+
+Do not add Spanish or any other language to new or modified project content. When updating existing content, translate any touched non-English text into English. Keep technical names, API names, package names, URLs, and quoted third-party text unchanged when required for correctness.
+
 ## Getting started
 
 ### 1. Install dependencies

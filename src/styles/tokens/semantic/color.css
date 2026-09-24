@@ -1,34 +1,34 @@
 /*
- * Tokens semánticos de color.
- * Cada uno mapea un ROL de diseño hacia un primitivo.
- * Estos son los nombres "seguros" de sobreescribir desde afuera
- * (ver README: Personalización de marca).
+ * Semantic color tokens.
+ * Each token maps a design ROLE to a primitive.
+ * These are the safe names to override externally
+ * (see README: Brand customization).
  */
 :root {
-  /* Acción primaria (botones, links, elementos interactivos principales) */
+  /* Primary action (buttons, links, and primary interactive elements) */
   --flowi-color-action-primary: var(--flowi-color-blue-300);
   --flowi-color-action-primary-hover: var(--flowi-color-blue-400);
   --flowi-color-action-primary-active: var(--flowi-color-blue-500);
 
-  /* Texto sobre un fondo de acción primaria (ej. texto del botón primario) */
+  /* Text on a primary action background (for example, primary button text) */
   --flowi-color-text-on-action: var(--flowi-color-neutral-0);
 
-  /* Texto por defecto sobre superficies neutras */
+  /* Default text on neutral surfaces */
   --flowi-color-text-default: var(--flowi-color-neutral-400);
 
-  /* Superficies neutras (fondos de controles secundarios, cards, etc.) */
+  /* Neutral surfaces (secondary control backgrounds, cards, and so on) */
   --flowi-color-surface: var(--flowi-color-neutral-0);
   --flowi-color-surface-hover: var(--flowi-color-neutral-50);
   --flowi-color-surface-active: var(--flowi-color-neutral-100);
 
-  /* Bordes */
+  /* Borders */
   --flowi-color-border: var(--flowi-color-neutral-100);
   --flowi-color-border-hover: var(--flowi-color-neutral-200);
 
-  /* Anillo de foco (accesibilidad de teclado) */
+  /* Focus ring (keyboard accessibility) */
   --flowi-color-focus-ring: var(--flowi-color-blue-300);
 
-  /* Feedback (mensajes de estado, validación de formularios, alertas) */
+  /* Feedback (status messages, form validation, and alerts) */
   --flowi-color-feedback-error: var(--flowi-color-error-500);
   --flowi-color-feedback-error-subtle: var(--flowi-color-error-50);
   --flowi-color-feedback-warning: var(--flowi-color-warning-500);

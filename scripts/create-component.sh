@@ -24,13 +24,16 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 COMPONENT_DIR="$ROOT_DIR/src/components/$NAME"
 COMPONENTS_INDEX="$ROOT_DIR/src/components/index.ts"
 SRC_INDEX="$ROOT_DIR/src/index.ts"
+DOCS_COMPONENTS_DIR="$ROOT_DIR/docs/components"
+DOC_FILE="$DOCS_COMPONENTS_DIR/${NAME,,}.md"
+DOCS_INDEX="$DOCS_COMPONENTS_DIR/index.md"
 
 if [ -d "$COMPONENT_DIR" ]; then
   echo "Error: src/components/$NAME already exists."
   exit 1
 fi
 
-mkdir -p "$COMPONENT_DIR"
+mkdir -p "$COMPONENT_DIR" "$DOCS_COMPONENTS_DIR"
 
 # --- Component.tsx -----------------------------------------------------
 cat > "$COMPONENT_DIR/$NAME.tsx" << EOF
@@ -45,8 +48,9 @@ import styles from './$NAME.module.css'
  *   2. Re-export both from src/components/index.ts
  *   3. Re-export both from src/index.ts (the library's public entry point)
  *   4. Add a Storybook story with a play function: $NAME.stories.ts
- *      (that play function IS the component's test - it runs via
- *      \`pnpm test\` / addon-vitest, in a real browser through Playwright.
+ *      (that play function is the component's interaction check in
+ *      Storybook. The browser test project is configured for future
+ *      automated execution through addon-vitest and Playwright.
  *      There is no separate $NAME.test.tsx: this project has no
  *      Testing Library / jsdom set up, so a plain .test.tsx file would
  *      not be picked up by vite.config.ts's vitest project.)
@@ -79,6 +83,39 @@ cat > "$COMPONENT_DIR/$NAME.module.css" << EOF
 }
 EOF
 
+# --- Component documentation -------------------------------------------
+cat > "$DOC_FILE" << EOF
+# $NAME
+
+Describe the purpose and intended use of $NAME.
+
+## Import
+
+\`\`\`tsx
+import { $NAME } from '@flowi/ui'
+\`\`\`
+
+## Props
+
+Document the public props, supported values, defaults, and native HTML attributes.
+
+## Usage
+
+\`\`\`tsx
+<$NAME>$NAME</$NAME>
+\`\`\`
+
+## Accessibility
+
+Document the component's keyboard behavior, accessible name requirements, and any relevant ARIA guidance.
+
+## Notes
+
+Add framework-specific guidance, theming details, or constraints here when needed.
+EOF
+
+printf '%s\n' "- [$NAME](${NAME,,}.md) - add component summary" >> "$DOCS_INDEX"
+
 # --- index.ts (component barrel) ----------------------------------------
 cat > "$COMPONENT_DIR/index.ts" << EOF
 export { $NAME } from './$NAME'
@@ -86,10 +123,7 @@ export type { ${NAME}Props } from './$NAME'
 EOF
 
 # --- Component.stories.ts ------------------------------------------------
-# The play function below is this component's test: it runs through
-# @storybook/addon-vitest (Vitest + Playwright), configured in
-# vite.config.ts. There is no separate *.test.tsx file - see the
-# checklist comment in $NAME.tsx for why.
+# The play function below is this component's interaction check in Storybook.
 cat > "$COMPONENT_DIR/$NAME.stories.ts" << EOF
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from 'storybook/test'
@@ -135,16 +169,19 @@ echo ""
 echo "Created src/components/$NAME/"
 echo "  $NAME.tsx"
 echo "  $NAME.module.css"
-echo "  $NAME.stories.ts   (includes the play-function test)"
+echo "  $NAME.stories.ts"
 echo "  index.ts"
+echo ""
+echo "Created docs/components/${NAME,,}.md"
 echo ""
 echo "Wired exports into:"
 echo "  src/components/index.ts"
 echo "  src/index.ts"
+echo "  docs/components/index.md"
 echo ""
 echo "Next steps:"
 echo "  1. Pick the right native element/attrs for ${NAME}Props in $NAME.tsx"
 echo "  2. Style $NAME.module.css using --flowi-* tokens"
 echo "  3. Fill in argTypes/args and the play function in $NAME.stories.ts"
-echo "  4. pnpm storybook  (preview it)"
-echo "  5. pnpm test       (runs the play function via addon-vitest)"
+echo "  4. Complete docs/components/${NAME,,}.md"
+echo "  5. Review the story with pnpm storybook"

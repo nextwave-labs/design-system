@@ -1,10 +1,10 @@
 /*
- * Punto de entrada único de los design tokens de Flowi.
- * Orden estricto: primitivos -> semánticos.
- * Los semánticos dependen de que los primitivos ya existan en el documento.
+ * Single entry point for Flowi design tokens.
+ * Strict order: primitives -> semantic tokens.
+ * Semantic tokens depend on primitives being defined first.
  */
 
-/* 1. Primitivos: la paleta cruda, sin significado de uso todavía */
+/* 1. Primitives: raw values without usage meaning */
 @import './tokens/primitives/color.css';
 @import './tokens/primitives/typography.css';
 @import './tokens/primitives/spacing.css';
@@ -12,6 +12,6 @@
 @import './tokens/primitives/shadow.css';
 @import './tokens/primitives/effects.css';
 
-/* 2. Semánticos: el propósito de diseño, mapeado a los primitivos de arriba */
+/* 2. Semantic tokens: design intent mapped to the primitives above */
 @import './tokens/semantic/color.css';
 @import './tokens/semantic/typography.css';
