@@ -10,17 +10,21 @@ import { Button } from '@flowi/ui'
 
 ## Props
 
-| Prop      | Values                 | Default   | Description      |
-| --------- | ---------------------- | --------- | ---------------- |
-| `variant` | `primary`, `secondary` | `primary` | Visual treatment |
-| `size`    | `sm`, `md`, `lg`       | `md`      | Control size     |
+| Prop       | Values                                     | Default   | Description                                            |
+| ---------- | ------------------------------------------ | --------- | ------------------------------------------------------ |
+| `variant`  | `primary`, `secondary`, `tertiary`, `text` | `primary` | Visual treatment, from highest to lowest emphasis      |
+| `size`     | `sm`, `md`, `lg`, `xl`                     | `md`      | Control size (height 40 / 48 / 52 / 60px)              |
+| `icon`     | `ReactNode`                                | none      | Leading icon. It inherits the text color of each state |
+| `iconOnly` | `true`, `false`                            | `false`   | Circular button without a label. Always `primary`      |
 
-All native button attributes are supported.
+All native button attributes are supported. When `iconOnly` is `true`, `icon` and `aria-label` are required.
 
 ```tsx
 <Button type='button' variant='secondary' size='lg' onClick={handleOpen}>
   Open settings
 </Button>
+
+<Button iconOnly icon={<PlusIcon />} aria-label='Add item' />
 ```
 
 Use a native button label or accessible name, and set `type='button'` when the button is inside a form but should not submit it.
