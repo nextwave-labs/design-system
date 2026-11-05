@@ -7,4 +7,5 @@ Flowi component documentation is organized by component so each page can describ
 New public components should add a page to this index and a matching file at `docs/components/<component>.md`.
 
 - [Button](button.md) — actions with primary and secondary variants and small, medium, and large sizes
+- [Input](input.md) — text field with an optional leading icon and focus, error, and disabled states
 - [Icons](icons.md) — shared icon set used by components and available to consumers
