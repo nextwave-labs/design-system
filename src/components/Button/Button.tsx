@@ -1,24 +1,43 @@
 'use client'
+import { tv, type VariantProps } from 'tailwind-variants/lite'
 import styles from './Button.module.css'
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary'
-  size?: 'sm' | 'md' | 'lg'
-}
+const buttonVariants = tv({
+  base: styles.button,
+  variants: {
+    variant: {
+      primary: styles.primary,
+      secondary: styles.secondary,
+    },
+    size: {
+      sm: styles.sm,
+      md: styles.md,
+      lg: styles.lg,
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'md',
+  },
+})
+
+export interface ButtonProps
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
 
 export function Button({
-  variant = 'primary',
-  size = 'md',
+  variant,
+  size,
   className,
   children,
   ...rest
 }: ButtonProps) {
-  const classNames = [styles.button, styles[variant], styles[size], className]
-    .filter(Boolean)
-    .join(' ')
-
   return (
-    <button className={classNames} {...rest}>
+    <button
+      className={buttonVariants({ variant, size, class: className })}
+      {...rest}
+    >
       {children}
     </button>
   )
