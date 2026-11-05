@@ -5,6 +5,7 @@
   /* Border widths */
   --flowi-border-width-thin: 1px;
   --flowi-border-width-thick: 2px;
+  --flowi-border-width-heavy: 3px;
 
   /* Focus ring (keyboard accessibility) */
   --flowi-focus-ring-width: 2px;
