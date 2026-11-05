@@ -1,6 +1,6 @@
 # Input
 
-`Input` renders a native `<input>` inside a pill-shaped field, with an optional leading icon. It fills the width of its container.
+`Input` renders a native `<input>` inside a pill-shaped field, with an optional leading icon. It fills the width of its container. For search fields, use [SearchInput](search-input.md).
 
 ## Import
 

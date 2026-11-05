@@ -1,11 +1,15 @@
 import './styles/tokens.css'
 
-export { Button, Input } from './components'
+export { Button, Input, SearchInput } from './components'
 export type {
   ButtonProps,
   InputCssVariable,
   InputProps,
   InputStyle,
+  SearchButtonProps,
+  SearchInputCssVariable,
+  SearchInputProps,
+  SearchInputStyle,
 } from './components'
 
 export { AlertIcon, Icon, SearchIcon, UserIcon } from './icons'

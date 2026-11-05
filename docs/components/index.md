@@ -8,4 +8,5 @@ New public components should add a page to this index and a matching file at `do
 
 - [Button](button.md) — actions with primary and secondary variants and small, medium, and large sizes
 - [Input](input.md) — text field with an optional leading icon and focus, error, and disabled states
+- [SearchInput](search-input.md) — search field with a customizable trailing search button
 - [Icons](icons.md) — shared icon set used by components and available to consumers

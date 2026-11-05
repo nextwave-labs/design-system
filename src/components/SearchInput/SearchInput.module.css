@@ -1,0 +1,44 @@
+/*
+ * Search-specific styles layered on the shared InputBase shell.
+ * The button background and icon follow the field (--_accent and the slot
+ * icon color) unless --flowi-search-button-bg / --flowi-search-button-icon
+ * are set. Error and disabled states always win over a custom color.
+ */
+.root {
+  --_height: var(--flowi-search-input-height);
+}
+
+.root .button {
+  background-color: var(--flowi-search-button-bg, var(--_accent));
+  color: var(--flowi-search-button-icon, var(--flowi-input-slot-icon));
+  cursor: pointer;
+}
+
+.root:not(:has(input[aria-invalid='true'])) .button:hover:not(:disabled) {
+  background-color: var(--flowi-search-button-bg-hover);
+}
+
+.root:not(:has(input[aria-invalid='true'])) .button:active:not(:disabled) {
+  background-color: var(--flowi-search-button-bg-active);
+}
+
+.root:has(input[aria-invalid='true']) .button,
+.root .button:disabled {
+  background-color: var(--_accent);
+}
+
+.root .button:disabled {
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: var(--flowi-focus-ring-width) solid
+    var(--flowi-search-button-icon, var(--flowi-input-slot-icon));
+  outline-offset: calc(
+    -1 *
+      (
+        var(--flowi-input-stroke-width-focus) + 2 *
+          var(--flowi-focus-ring-width)
+      )
+  );
+}
