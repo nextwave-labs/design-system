@@ -133,25 +133,36 @@ Follow the Button pattern:
 - Export the component as a named export (not default)
 - Use `className` as a prop to allow external styles
 - Use `--flowi-*` tokens through CSS Modules
+- Compose class names with `tv()` from `tailwind-variants/lite`: map the base, variants, and slots to CSS Module classes, and pass `className` through `class`. Do not join class names by hand
 
 ```tsx
+import { tv, type VariantProps } from 'tailwind-variants/lite'
 import styles from './<Name>.module.css'
 
+const <name>Variants = tv({
+  base: styles.<name>,
+  variants: {
+    size: { sm: styles.sm, md: styles.md },
+  },
+  defaultVariants: { size: 'md' },
+})
+
 export interface <Name>Props
-  extends React.HTMLAttributes<HTMLElement> {
+  extends React.HTMLAttributes<HTMLElement>,
+    VariantProps<typeof <name>Variants> {
   // component-specific props
 }
 
-export function <Name>({ className, children, ...rest }: <Name>Props) {
-  const classNames = [styles.<name>, className].filter(Boolean).join(' ')
-
+export function <Name>({ size, className, children, ...rest }: <Name>Props) {
   return (
-    <element className={classNames} {...rest}>
+    <element className={<name>Variants({ size, class: className })} {...rest}>
       {children}
     </element>
   )
 }
 ```
+
+The `/lite` entry composes classes without Tailwind's class merger, which this project does not need because it uses CSS Modules.
 
 ### 3. Styles (`<Name>.module.css`)
 
