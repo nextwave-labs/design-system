@@ -37,7 +37,11 @@ mkdir -p "$COMPONENT_DIR" "$DOCS_COMPONENTS_DIR"
 
 # --- Component.tsx -----------------------------------------------------
 cat > "$COMPONENT_DIR/$NAME.tsx" << EOF
+import { tv } from 'tailwind-variants/lite'
 import styles from './$NAME.module.css'
+
+// Compose classes with tv(): add variants/slots mapped to CSS Module classes.
+const rootVariants = tv({ base: styles.root })
 
 /**
  * $NAME
@@ -64,10 +68,8 @@ export interface ${NAME}Props
 }
 
 export function $NAME({ className, children, ...rest }: ${NAME}Props) {
-  const classNames = [styles.root, className].filter(Boolean).join(' ')
-
   return (
-    <div className={classNames} {...rest}>
+    <div className={rootVariants({ class: className })} {...rest}>
       {children}
     </div>
   )

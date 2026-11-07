@@ -1,0 +1,8 @@
+:root {
+  /* Size scale for control and icon dimensions (real px values expressed as rem from a 16px base) */
+  --flowi-size-16: 1rem;
+  --flowi-size-20: 1.25rem;
+  --flowi-size-24: 1.5rem;
+  --flowi-size-40: 2.5rem;
+  --flowi-size-44: 2.75rem;
+}

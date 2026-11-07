@@ -1,0 +1,41 @@
+/*
+ * Semantic input tokens.
+ * Colors and dimensions of Input and SearchInput, mapped only to primitives
+ * and other semantic tokens. Override them globally on :root, or per instance
+ * through the component's `style` or `className`.
+ */
+:root {
+  /* Field colors */
+  --flowi-input-fill: var(--flowi-color-surface);
+  --flowi-input-stroke: var(--flowi-color-action-primary);
+  --flowi-input-stroke-error: var(--flowi-color-feedback-error);
+  --flowi-input-stroke-disabled: var(--flowi-color-neutral-100);
+  --flowi-input-text: var(--flowi-color-text-default);
+  --flowi-input-text-disabled: var(--flowi-color-neutral-200);
+  --flowi-input-placeholder: var(--flowi-color-neutral-200);
+  --flowi-input-placeholder-disabled: var(--flowi-color-neutral-100);
+  --flowi-input-slot-icon: var(--flowi-color-text-on-action);
+
+  /* Search button hover/press colors. The button background and icon follow
+     the field (stroke and slot icon) unless --flowi-search-button-bg or
+     --flowi-search-button-icon are set on the component. */
+  --flowi-search-button-bg-hover: var(--flowi-color-action-primary-hover);
+  --flowi-search-button-bg-active: var(--flowi-color-action-primary-active);
+
+  /* Typography (16/24 regular) */
+  --flowi-input-font-size: var(--flowi-font-size-16);
+  --flowi-input-font-weight: var(--flowi-font-weight-regular);
+  --flowi-input-line-height: var(--flowi-line-height-24);
+
+  /* Dimensions */
+  --flowi-input-height: var(--flowi-size-40);
+  --flowi-search-input-height: var(--flowi-size-44);
+  --flowi-input-radius: var(--flowi-radius-full);
+  --flowi-input-padding-inline: var(--flowi-spacing-lg);
+  --flowi-input-gap: var(--flowi-spacing-sm);
+  --flowi-input-icon-size: var(--flowi-icon-size-lg);
+  --flowi-input-stroke-width: var(--flowi-border-width-thin);
+  /* Slots sit this far from the edge, so on focus they grow to the edge and
+     merge with the stroke. */
+  --flowi-input-stroke-width-focus: var(--flowi-border-width-heavy);
+}

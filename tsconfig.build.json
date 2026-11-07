@@ -29,6 +29,11 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/index.ts", "src/components/**/*", "src/css-modules.d.ts"],
+  "include": [
+    "src/index.ts",
+    "src/components/**/*",
+    "src/icons/**/*",
+    "src/css-modules.d.ts"
+  ],
   "exclude": ["src/**/*.stories.*", "src/**/*.test.*", "src/**/*.spec.*"]
 }

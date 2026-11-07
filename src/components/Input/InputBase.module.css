@@ -1,0 +1,156 @@
+/*
+ * Shared shell for Input and SearchInput.
+ * The stroke is an inset box-shadow, so the control never changes size
+ * between states. Every state color flows through --_accent, which the
+ * stroke and the slots share. Components adjust the shell through private
+ * properties (--_height) instead of competing selectors.
+ */
+.root {
+  --_accent: var(--flowi-input-stroke);
+  --_stroke-width: var(--flowi-input-stroke-width);
+  --_inset: var(--flowi-input-stroke-width-focus);
+
+  display: flex;
+  align-items: stretch;
+  gap: var(--flowi-input-gap);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--_height, var(--flowi-input-height));
+  padding: var(--_inset);
+  border-radius: var(--flowi-input-radius);
+  background-color: var(--flowi-input-fill);
+  box-shadow: inset 0 0 0 var(--_stroke-width) var(--_accent);
+  font-family: var(--flowi-font-family);
+  cursor: text;
+  transition: box-shadow var(--flowi-motion-duration-fast)
+    var(--flowi-motion-easing-standard);
+}
+
+/* States */
+
+.root:focus-within {
+  --_stroke-width: var(--flowi-input-stroke-width-focus);
+}
+
+.invalid {
+  --_accent: var(--flowi-input-stroke-error);
+}
+
+.root:has(.field:disabled) {
+  --_accent: var(--flowi-input-stroke-disabled);
+  --_stroke-width: var(--flowi-input-stroke-width);
+  cursor: not-allowed;
+}
+
+/* Native field */
+
+.field {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: calc(var(--flowi-input-padding-inline) - var(--_inset));
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--flowi-input-text);
+  caret-color: currentColor;
+  font: inherit;
+  font-size: var(--flowi-input-font-size);
+  font-weight: var(--flowi-input-font-weight);
+  line-height: var(--flowi-input-line-height);
+  text-overflow: ellipsis;
+}
+
+.field::placeholder {
+  color: var(--flowi-input-placeholder);
+  opacity: 1;
+}
+
+.field:disabled {
+  color: var(--flowi-input-text-disabled);
+  cursor: not-allowed;
+}
+
+.field:disabled::placeholder {
+  color: var(--flowi-input-placeholder-disabled);
+}
+
+/* Hide native search decorations; SearchInput provides its own action. */
+.field::-webkit-search-decoration,
+.field::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+/* The gap already separates the field from an adjacent slot or icon. */
+.slotStart + .field {
+  padding-inline-start: 0;
+}
+
+.root:has(.slotEnd, .trailingIcon) .field {
+  padding-inline-end: 0;
+}
+
+/* Slots: filled pills that hold an icon or an action */
+
+.slot {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: var(--flowi-input-padding-inline);
+  border: none;
+  border-radius: var(--flowi-input-radius);
+  background-color: var(--_accent);
+  color: var(--flowi-input-slot-icon);
+  transition:
+    margin var(--flowi-motion-duration-fast) var(--flowi-motion-easing-standard),
+    padding var(--flowi-motion-duration-fast)
+      var(--flowi-motion-easing-standard),
+    background-color var(--flowi-motion-duration-fast)
+      var(--flowi-motion-easing-standard);
+}
+
+.slot > svg,
+.trailingIcon > svg {
+  display: block;
+  flex: none;
+  width: var(--flowi-input-icon-size);
+  height: var(--flowi-input-icon-size);
+}
+
+/* On focus the slot grows to the edge and merges with the thicker stroke. */
+.root:focus-within .slot {
+  margin-block: calc(-1 * var(--_inset));
+}
+
+.root:focus-within .slotStart {
+  margin-inline-start: calc(-1 * var(--_inset));
+  padding-inline-start: calc(var(--flowi-input-padding-inline) + var(--_inset));
+}
+
+.root:focus-within .slotEnd {
+  margin-inline-end: calc(-1 * var(--_inset));
+  padding-inline-end: calc(var(--flowi-input-padding-inline) + var(--_inset));
+}
+
+/* Plain trailing icon (no filled slot) */
+
+.trailingIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  margin-inline-end: calc(var(--flowi-input-padding-inline) - var(--_inset));
+  color: var(--_accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .slot {
+    transition: none;
+  }
+}

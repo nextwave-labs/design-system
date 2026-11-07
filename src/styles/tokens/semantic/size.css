@@ -1,0 +1,10 @@
+/*
+ * Semantic size tokens.
+ * Shared dimensions mapped to the primitive size scale.
+ */
+:root {
+  /* Icons */
+  --flowi-icon-size-sm: var(--flowi-size-16);
+  --flowi-icon-size-md: var(--flowi-size-20);
+  --flowi-icon-size-lg: var(--flowi-size-24);
+}

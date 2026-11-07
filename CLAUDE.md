@@ -62,7 +62,11 @@ Barrel chain: `src/index.ts` → `src/components/index.ts` → `src/components/<
 
 ### Externals
 
-React, react-dom, and react/jsx-runtime are externalized — not bundled. Peer dependencies accept React 18 or 19.
+React, react-dom, and react/jsx-runtime are externalized — not bundled. Peer dependencies accept React 18 or 19. `tailwind-variants` is a runtime dependency and is also externalized.
+
+### Class composition
+
+Components compose class names with `tv()` from `tailwind-variants/lite`, mapping base, variants, and slots to CSS Module classes (no Tailwind, no class merger). Do not join class names by hand.
 
 ## Conventions
 

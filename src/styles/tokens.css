@@ -8,6 +8,7 @@
 @import './tokens/primitives/color.css';
 @import './tokens/primitives/typography.css';
 @import './tokens/primitives/spacing.css';
+@import './tokens/primitives/size.css';
 @import './tokens/primitives/radius.css';
 @import './tokens/primitives/shadow.css';
 @import './tokens/primitives/effects.css';
@@ -15,3 +16,5 @@
 /* 2. Semantic tokens: design intent mapped to the primitives above */
 @import './tokens/semantic/color.css';
 @import './tokens/semantic/typography.css';
+@import './tokens/semantic/size.css';
+@import './tokens/semantic/input.css';
