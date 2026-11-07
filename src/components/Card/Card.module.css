@@ -1,0 +1,209 @@
+.root {
+  --card-gap: var(--flowi-spacing-xs);
+  --card-min-height: 32.5rem;
+  --card-fade: 6rem;
+  --card-inset: var(--flowi-spacing-xl);
+
+  position: relative;
+  inline-size: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--flowi-card-fill);
+  color: var(--flowi-card-text);
+  font-family: var(--flowi-font-family);
+  border-radius: var(--flowi-card-radius);
+  box-shadow:
+    0 0 0 var(--flowi-border-width-thin) var(--flowi-card-stroke),
+    var(--flowi-card-shadow);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--flowi-text-title-m-size);
+  font-weight: var(--flowi-text-title-m-weight);
+  line-height: var(--flowi-text-title-m-line-height);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--flowi-text-body-l-size);
+  font-weight: var(--flowi-text-body-l-weight);
+  line-height: var(--flowi-text-body-l-line-height);
+}
+
+.action {
+  position: relative;
+  z-index: 2;
+  margin-block-start: calc(var(--flowi-spacing-lg) - var(--card-gap));
+  /* Align the text button's label (not its box) with the title, without
+     leaving the card's inset (which would clip it). */
+  margin-inline-start: max(
+    calc(var(--flowi-spacing-lg) * -1),
+    calc(var(--card-inset) * -1)
+  );
+  /* Only the action itself sits above the stretched link, not its row */
+  pointer-events: none;
+}
+
+.root .action > * {
+  pointer-events: auto;
+  /* Button's min-width would center short labels and break title alignment.
+     The extra .root class keeps this winning regardless of CSS emit order. */
+  min-width: 0;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  inline-size: var(--flowi-card-icon-size);
+  block-size: var(--flowi-card-icon-size);
+  border-radius: var(--flowi-radius-full);
+  background: var(--flowi-card-icon-fill);
+  color: var(--flowi-color-text-on-action);
+  border: var(--flowi-border-width-heavy) solid var(--flowi-card-icon-ring);
+  margin-block-end: calc(var(--flowi-spacing-lg) - var(--card-gap));
+}
+
+.icon > svg {
+  inline-size: var(--flowi-icon-size-lg);
+  block-size: var(--flowi-icon-size-lg);
+}
+
+.media {
+  position: relative;
+}
+
+.media > * {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Variants */
+.basic,
+.centered {
+  padding: var(--card-inset);
+}
+
+.centered .body {
+  align-items: center;
+  text-align: center;
+}
+
+.centered .action {
+  margin-inline-start: 0;
+}
+
+.horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--flowi-spacing-xl);
+  padding: var(--card-inset);
+  --card-inset: var(--flowi-spacing-md);
+  --card-gap: var(--flowi-spacing-sm);
+}
+
+.horizontal .media {
+  flex: 1 1 18.8125rem;
+  block-size: 9.5rem;
+  border-radius: var(--flowi-card-media-radius);
+  overflow: hidden;
+}
+
+.horizontal .body {
+  flex: 999 1 15rem;
+  min-inline-size: 0;
+}
+
+.imageTop,
+.imageBottom {
+  --card-gap: var(--flowi-spacing-sm);
+
+  min-block-size: var(--card-min-height);
+}
+
+.imageTop .media,
+.imageBottom .media {
+  flex: 1 1 0;
+  min-block-size: 0;
+}
+
+.imageTop .body,
+.imageBottom .body {
+  padding: var(--card-inset);
+}
+
+.overlay {
+  --card-gap: var(--flowi-spacing-sm);
+
+  display: grid;
+  min-block-size: var(--card-min-height);
+}
+
+.overlay .media,
+.overlay .scrim,
+.overlay .body {
+  grid-area: 1 / 1;
+}
+
+/* Keep the -webkit- declarations first: esbuild's minifier drops the unprefixed one when it comes after. */
+.overlay .scrim {
+  align-self: end;
+  block-size: 14.8125rem;
+  -webkit-backdrop-filter: blur(var(--flowi-card-overlay-blur));
+  backdrop-filter: blur(var(--flowi-card-overlay-blur));
+  background: color-mix(in srgb, var(--flowi-color-neutral-0) 10%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000);
+  mask-image: linear-gradient(to bottom, transparent, #000);
+}
+
+.overlay .body {
+  align-self: end;
+  isolation: isolate;
+  padding: var(--card-fade) var(--card-inset) var(--card-inset);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--flowi-color-neutral-0) var(--card-fade)
+  );
+}
+
+/* Clickable: the title link stretches over the whole card */
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.clickable:has(.link:focus-visible) {
+  outline: var(--flowi-focus-ring-width) solid var(--flowi-color-focus-ring);
+  outline-offset: var(--flowi-focus-ring-offset);
+}
