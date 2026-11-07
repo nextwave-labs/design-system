@@ -69,3 +69,7 @@ Error and disabled states always take precedence over a custom button color.
 - Give the field an accessible name with a `<label htmlFor>` or `aria-label`; it is exposed as a `searchbox`.
 - The search button is a native `<button>` reachable with Tab, named by `searchButtonProps['aria-label']` (default `Search`).
 - Native browser search decorations (the clear "x") are hidden.
+
+## Next.js App Router
+
+`SearchInput` is a Client Component (the bundle starts with `'use client'`). `onSearch` is a function, so render it with `onSearch` from a Client Component. See [Button](button.md#nextjs-app-router) for an example.
