@@ -7,8 +7,18 @@
 :root {
   /* Primary action (buttons, links, and primary interactive elements) */
   --flowi-color-action-primary: var(--flowi-color-blue-300);
-  --flowi-color-action-primary-hover: var(--flowi-color-blue-400);
-  --flowi-color-action-primary-active: var(--flowi-color-blue-500);
+  --flowi-color-action-primary-hover: var(--flowi-color-blue-200);
+  --flowi-color-action-primary-active: var(--flowi-color-blue-400);
+
+  /* Secondary action (secondary buttons, subtle hover/focus backgrounds) */
+  --flowi-color-action-secondary: var(--flowi-color-blue-50);
+  --flowi-color-action-secondary-hover: var(--flowi-color-blue-25);
+
+  /* Disabled actions */
+  --flowi-color-action-disabled: var(--flowi-color-neutral-100);
+  --flowi-color-text-on-action-disabled: var(--flowi-color-neutral-50);
+  --flowi-color-text-disabled: var(--flowi-color-neutral-200);
+  --flowi-color-border-disabled: var(--flowi-color-neutral-100);
 
   /* Text on a primary action background (for example, primary button text) */
   --flowi-color-text-on-action: var(--flowi-color-neutral-0);
@@ -26,7 +36,7 @@
   --flowi-color-border-hover: var(--flowi-color-neutral-200);
 
   /* Focus ring (keyboard accessibility) */
-  --flowi-color-focus-ring: var(--flowi-color-blue-300);
+  --flowi-color-focus-ring: var(--flowi-color-blue-75);
 
   /* Feedback (status messages, form validation, and alerts) */
   --flowi-color-feedback-error: var(--flowi-color-error-500);

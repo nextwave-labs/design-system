@@ -1,10 +1,31 @@
 /*
  * Semantic size tokens.
- * Shared dimensions mapped to the primitive size scale.
+ * Shared and per-control dimensions, mapped to the primitive size scale.
+ * Button radius is always fully rounded (--flowi-radius-full), so it has no
+ * per-size token.
  */
 :root {
   /* Icons */
   --flowi-icon-size-sm: var(--flowi-size-16);
   --flowi-icon-size-md: var(--flowi-size-20);
   --flowi-icon-size-lg: var(--flowi-size-24);
+
+  /* Button */
+  --flowi-button-gap: var(--flowi-spacing-10);
+
+  --flowi-button-s-height: var(--flowi-size-40);
+  --flowi-button-s-min-width: var(--flowi-size-112);
+  --flowi-button-s-icon-size: var(--flowi-size-20);
+
+  --flowi-button-m-height: var(--flowi-size-48);
+  --flowi-button-m-min-width: var(--flowi-size-140);
+  --flowi-button-m-icon-size: var(--flowi-size-22);
+
+  --flowi-button-l-height: var(--flowi-size-52);
+  --flowi-button-l-min-width: var(--flowi-size-146);
+  --flowi-button-l-icon-size: var(--flowi-size-24);
+
+  --flowi-button-xl-height: var(--flowi-size-60);
+  --flowi-button-xl-min-width: var(--flowi-size-162);
+  --flowi-button-xl-icon-size: var(--flowi-size-24);
 }
