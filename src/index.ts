@@ -1,8 +1,9 @@
 import './styles/tokens.css'
 
-export { Button, Input, SearchInput } from './components'
+export { Button, Card, Input, SearchInput } from './components'
 export type {
   ButtonProps,
+  CardProps,
   InputCssVariable,
   InputProps,
   InputStyle,

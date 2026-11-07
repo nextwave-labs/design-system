@@ -29,6 +29,7 @@ This project expects Node 22 or newer. The repository includes `.nvmrc` and the 
 ```bash
 pnpm build
 pnpm lint
+pnpm typecheck
 pnpm storybook
 ```
 
@@ -228,6 +229,7 @@ export const Default: Story = {
 pnpm storybook    # review the component visually
 pnpm build        # verify dist/ generates correctly
 pnpm lint         # no errors
+pnpm typecheck    # no type errors, stories included
 ```
 
 ---
@@ -262,6 +264,8 @@ Always before committing:
 pnpm storybook    # review changes visually
 pnpm build        # verify it compiles
 pnpm lint         # no errors
+pnpm typecheck    # no type errors, stories included
+pnpm typecheck    # no type errors, stories included
 ```
 
 ---
@@ -277,5 +281,5 @@ pnpm lint         # no errors
 - [ ] `:disabled` handled if applicable
 - [ ] Barrel exports updated (`component/index.ts` + `components/index.ts`)
 - [ ] Story created with `tags: ['autodocs']`
-- [ ] `pnpm build`, `pnpm lint`, and relevant Storybook checks pass
+- [ ] `pnpm build`, `pnpm lint`, `pnpm typecheck`, and relevant Storybook checks pass
 - [ ] Visual or behavioral changes are described clearly in the PR

@@ -12,17 +12,18 @@ All work in this repository must be written in English. Follow the canonical pol
 
 ## Commands
 
-| Command                | Purpose                                                    |
-| ---------------------- | ---------------------------------------------------------- |
-| `pnpm build`           | Build library (`tsc` declarations + Vite bundle) → `dist/` |
-| `pnpm lint`            | ESLint (flat config)                                       |
-| `pnpm format`          | Prettier (no semis, single quotes)                         |
-| `pnpm storybook`       | Storybook dev server on port 6006                          |
-| `pnpm build-storybook` | Static Storybook build                                     |
-| `pnpm commit`          | Interactive conventional commit via Commitizen             |
-| `pnpm manager`         | Start the agent workflow (`claude --agent manager`)        |
+| Command                | Purpose                                                     |
+| ---------------------- | ----------------------------------------------------------- |
+| `pnpm build`           | Build library (`tsc` declarations + Vite bundle) → `dist/`  |
+| `pnpm lint`            | ESLint (flat config)                                        |
+| `pnpm typecheck`       | `tsc` on the app config; the only check that covers stories |
+| `pnpm format`          | Prettier (no semis, single quotes)                          |
+| `pnpm storybook`       | Storybook dev server on port 6006                           |
+| `pnpm build-storybook` | Static Storybook build                                      |
+| `pnpm commit`          | Interactive conventional commit via Commitizen              |
+| `pnpm manager`         | Start the agent workflow (`claude --agent manager`)         |
 
-Story-based tests (`play` functions) run through Vitest + Playwright via the Storybook addon (configured in `vite.config.ts`) with `pnpm vitest run --project=storybook`. Install the Playwright browser once with `pnpm exec playwright install chromium`.
+Story-based tests (`play` functions) run through Vitest + Playwright via the Storybook addon (configured in `vite.config.ts` with `@vitest/browser-playwright`) with `pnpm vitest run --project=storybook`. Install the Playwright browser once with `pnpm exec playwright install chromium`. `pnpm lint` and `pnpm build` do not type-check stories; run `pnpm typecheck` for that.
 
 ## Architecture
 
@@ -81,18 +82,18 @@ flowchart LR
   C -- changes required --> E
   C -- approved --> Q[qa]
   Q -- fail --> E
-  Q -- pass --> M
+  Q -- pass --> D[docs] --> M
 ```
 
 | Agent               | Role                                                                                | Writes code     |
 | ------------------- | ----------------------------------------------------------------------------------- | --------------- |
-| `manager`           | Gathers requirements and designs, writes the spec, runs the pipeline                | No              |
+| `manager`           | Gathers requirements and designs, writes the spec, runs the pipeline, then docs     | No              |
 | `architect`         | Short implementation plan, guards against over-engineering                          | No              |
 | `software-engineer` | Implements the plan with stories and tests                                          | Yes             |
 | `code-quality`      | Reviews only the changed files                                                      | No              |
 | `qa`                | Tests changes in Storybook and in `../flowi-next-test`; ledger in `.claude/qa-log/` | Test files only |
 
-Skills in `.claude/skills/`: `/commit` (small Conventional Commits, never on `main`), `/pr` (PR from a branch using `.github/pull_request_template.md`), `/docs` (sync docs with code changes). Commits and PRs carry no AI attribution.
+Skills in `.claude/skills/`: `/commit` (small Conventional Commits, never on `main`), `/pr` (PR from a branch using `.github/pull_request_template.md`), `/docs` (sync docs with code changes). The manager runs `/docs` through `software-engineer` after QA passes, then asks before running `/commit` and `/pr`. Commits and PRs carry no AI attribution.
 
 ## Conventions
 

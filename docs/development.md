@@ -57,6 +57,7 @@ flowi/
 | `pnpm install`                        | Install dependencies and set up Husky hooks                               |
 | `pnpm build`                          | Build the library to `dist/`                                              |
 | `pnpm lint`                           | Run ESLint                                                                |
+| `pnpm typecheck`                      | Type-check source and stories (`tsc -p tsconfig.app.json --noEmit`)       |
 | `pnpm format`                         | Format code with Prettier                                                 |
 | `pnpm storybook`                      | Start Storybook on port 6006                                              |
 | `pnpm build-storybook`                | Build the static Storybook site                                           |
@@ -123,14 +124,17 @@ Before opening a PR, run:
 ```bash
 pnpm install
 pnpm lint
+pnpm typecheck
 pnpm build
 pnpm build-storybook
 ```
 
 This keeps the repo consistent with the current CI workflow, which runs `pnpm lint` and `pnpm build`.
 
-Story-based tests are not part of CI. Run them locally with `pnpm vitest run --project=storybook`. Install the Playwright browser once with `pnpm exec playwright install chromium`.
+Story-based tests are not part of CI. Run them locally with `pnpm vitest run --project=storybook`. The browser provider is `playwright()` from `@vitest/browser-playwright`, configured in `vite.config.ts`. Install the Playwright browser once with `pnpm exec playwright install chromium`.
 
 Story-based interaction checks are defined through the Storybook Vitest addon. Run `pnpm build-storybook` to verify the production Storybook build and use the accessibility panel when reviewing component stories. Accessibility checks are advisory because Storybook is configured with `test: 'todo'`.
+
+`pnpm build` excludes stories, so only `pnpm typecheck` catches type errors in them, including the Card prop contracts.
 
 To verify the packaged output rather than the source, see [Test the built library locally](../README.md#test-the-built-library-locally) in the README.

@@ -1,0 +1,22 @@
+/*
+ * Semantic card tokens.
+ * Colors and dimensions of Card, mapped only to primitives and other semantic
+ * tokens. Override them globally on :root, or per instance through the
+ * component's `style` or `className`.
+ */
+:root {
+  --flowi-card-fill: var(--flowi-color-neutral-50);
+  --flowi-card-stroke: var(--flowi-color-surface);
+  --flowi-card-text: var(--flowi-color-text-default);
+  --flowi-card-radius: var(--flowi-radius-2xl);
+  --flowi-card-media-radius: var(--flowi-radius-xl);
+  --flowi-card-shadow: var(--flowi-shadow-xl);
+
+  /* Icon circle */
+  --flowi-card-icon-size: var(--flowi-size-56);
+  --flowi-card-icon-fill: var(--flowi-color-action-primary);
+  --flowi-card-icon-ring: var(--flowi-color-blue-75);
+
+  /* Overlay variant: blur behind the text */
+  --flowi-card-overlay-blur: 3rem;
+}

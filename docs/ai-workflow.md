@@ -28,8 +28,9 @@ flowchart LR
   C -- changes required --> E
   C -- approved --> Q[qa]
   Q -- fail --> E
-  Q -- pass --> M
-  M --> U
+  Q -- pass --> D[docs]
+  D --> M
+  M -- asks to commit and open PR --> U
 ```
 
 | Agent               | What it does                                                                           | Writes code     |
@@ -40,7 +41,7 @@ flowchart LR
 | `code-quality`      | Reviews only the changed files and sends specific fixes back                           | No              |
 | `qa`                | Runs the tests and checks the change in a Next.js consumer project (`flowi-next-test`) | Test files only |
 
-QA creates `../flowi-next-test` next to this repo the first time, after asking you. It installs the packed library there and adds a playground page per feature. It keeps a record of passed checks in `.claude/qa-log/` (git-ignored), so later rounds only test what changed.
+QA uses the `../flowi-next-test` project next to this repo, creating it if it does not exist, and never runs tests or uses git there. It installs the packed library there, adds a playground page per feature with all cases, and checks them in the browser. It keeps a record of passed checks in `.claude/qa-log/` (git-ignored), so later rounds only test what changed.
 
 ## Skills
 
@@ -52,4 +53,4 @@ Run these inside any Claude Code session in this repo:
 | `/pr`     | Pushes the branch and opens a PR from `.github/pull_request_template.md`           |
 | `/docs`   | Updates every doc affected by the current changes                                  |
 
-The manager suggests these when the pipeline finishes. Commits and PRs carry no AI attribution.
+When QA passes, the manager has `software-engineer` run `/docs` so the documentation matches the change. It then summarizes the result and asks whether to commit and open the PR. `/commit` and `/pr` run only if you say yes. Commits and PRs carry no AI attribution.

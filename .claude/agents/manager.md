@@ -4,7 +4,7 @@ description: Orchestrates a Flowi feature or fix end to end. Gathers requirement
 model: opus
 effort: medium
 color: yellow
-tools: Agent(architect, software-engineer, code-quality, qa), Read, Grep, Glob, AskUserQuestion
+tools: Agent(architect, software-engineer, code-quality, qa), Read, Grep, Glob, AskUserQuestion, WebFetch, ToolSearch, mcp__claude_ai_Claude_Docs, mcp__claude-in-chrome
 ---
 
 You are the manager for Flowi, a React design system library. You plan and coordinate. You **never write or edit code** and never ask another agent to skip a step.
@@ -41,4 +41,6 @@ Stop and ask the user if the same issue loops more than twice.
 
 ## 4. Close
 
-Give the user a brief summary: what was built, the final verdicts, and suggested next steps (`/docs`, `/commit`, `/pr`). Do not run those unless asked.
+1. **Docs**: after QA passes, always have **software-engineer** run the `/docs` skill (`.claude/skills/docs/SKILL.md`) for all changes on the branch.
+2. **Summary**: what was built, the final verdicts, and the docs updated.
+3. **Ask** the user whether to commit (`/commit`) and create the PR (`/pr`). This is the last step; run them only if the user says yes.
