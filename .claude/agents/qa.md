@@ -32,24 +32,26 @@ pnpm lint && pnpm build && pnpm vitest run --project=storybook
 
 ## 3. Consumer test (new components or features)
 
-New components and features must be tested in a separate project: `flowi-next-test`, a sibling of this repo (`../flowi-next-test`).
+New components and features must also be rendered in a real Next.js app: `flowi-next-test`, a sibling of this repo (`../flowi-next-test`). Its only purpose is to render the library and check it visually in the browser.
 
-- **If it does not exist**: ask the user for permission before creating it. Then:
+- **If `../flowi-next-test` exists, use it. If it does not, create it** (no need to ask permission). Omit `--src-dir` so the structure stays `app/` at the root:
   ```bash
-  cd .. && pnpm create next-app@latest flowi-next-test --ts --app --eslint --use-pnpm --no-tailwind --src-dir --import-alias "@/*" --yes
+  cd .. && pnpm create next-app@latest flowi-next-test --ts --app --eslint --use-pnpm --no-tailwind --import-alias "@/*" --yes
   ```
+- **Never run tests in it** (no Vitest, Playwright test suites, etc.), and **never commit, branch, or run any git command in it.**
+- **Type checks** there are done only in the terminal: `pnpm exec tsc --noEmit`.
 - **Install the library from a packed tarball** (fresh each round):
   ```bash
   pnpm build && pnpm pack --pack-destination ../flowi-next-test
   cd ../flowi-next-test && pnpm add ./flowi-ui-<version>.tgz
   ```
   Import `@flowi/ui/styles.css` once in the root layout.
-- **Playground**: add a client page at `src/app/playground/<feature-slug>/page.tsx` that renders every case from the acceptance criteria (each variant, size, state, edge case). Keep one page per feature; update it on later rounds.
-- Run `pnpm dev` in the background and test the page.
+- **Playground**: add a client page at `app/playground/<feature-slug>/page.tsx` (the project has no `src/`) that renders **all** cases from the acceptance criteria (every variant, size, state, edge case). Keep one page per feature; update it on later rounds.
+- Run `pnpm dev` in the background, then inspect every case in the browser (section 4).
 
 ## 4. Browser checks
 
-Use the Playwright MCP (`mcp__playwright__*`) to navigate, interact, check keyboard focus, read the console, and take screenshots. If the Playwright MCP is not installed, guide the user:
+Use the Playwright MCP (`mcp__playwright__*`) on the playground page to navigate, interact, check keyboard focus, read the console, and take screenshots. If the Playwright MCP is not installed, guide the user:
 
 ```bash
 claude mcp add playwright -- npx @playwright/mcp@latest
