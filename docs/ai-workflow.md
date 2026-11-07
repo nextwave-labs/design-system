@@ -42,6 +42,18 @@ flowchart LR
 
 QA creates `../flowi-next-test` next to this repo the first time, after asking you. It installs the packed library there and adds a playground page per feature. It keeps a record of passed checks in `.claude/qa-log/` (git-ignored), so later rounds only test what changed.
 
+The manager never makes technical decisions: it plans the spec and a non-technical task breakdown, talks to you about product, design, and public-API choices, and sends every technical question or trade-off (including code-quality and QA findings) to the architect first.
+
+Acceptance criteria are written to be measurable (values, tolerances, contrast), so the engineer tests them up front.
+
+### Pitfalls file
+
+`.claude/knowledge/pitfalls.md` lists project-specific pitfalls (symptom → rule). The architect, engineer, code-quality, and QA read it first. When code-quality or QA finds a new class of issue, it adds a `Pitfall:` line to its report and the engineer appends it to the file.
+
+### Re-review
+
+After a fix round, the engineer writes the round diff to `.claude/qa-log/<feature>-round-<n>.diff` (git-ignored). Code-quality then runs in re-review mode: it checks only the previous issues and the new diff lines, without rereading `CLAUDE.md` or approved code. Minor suggestions go into the same fix round as the required fixes.
+
 ## Skills
 
 Run these inside any Claude Code session in this repo:

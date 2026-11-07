@@ -92,6 +92,8 @@ flowchart LR
 | `code-quality`      | Reviews only the changed files                                                      | No              |
 | `qa`                | Tests changes in Storybook and in `../flowi-next-test`; ledger in `.claude/qa-log/` | Test files only |
 
+`.claude/knowledge/pitfalls.md` is a short list of project pitfalls that the agents read before working; code-quality and qa flag new classes of issues and the engineer records them. The manager plans, coordinates, and talks to the user but makes no technical decisions: those go to the architect. Code-quality runs a light re-review (previous issues + round diff only) after fix rounds.
+
 Skills in `.claude/skills/`: `/commit` (small Conventional Commits, never on `main`), `/pr` (PR from a branch using `.github/pull_request_template.md`), `/docs` (sync docs with code changes). Commits and PRs carry no AI attribution.
 
 ## Conventions
