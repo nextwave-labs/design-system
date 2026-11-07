@@ -20,8 +20,9 @@ All work in this repository must be written in English. Follow the canonical pol
 | `pnpm storybook`       | Storybook dev server on port 6006                          |
 | `pnpm build-storybook` | Static Storybook build                                     |
 | `pnpm commit`          | Interactive conventional commit via Commitizen             |
+| `pnpm manager`         | Start the agent workflow (`claude --agent manager`)        |
 
-There is no standalone unit test command yet. Story-based tests run through Vitest + Playwright via the Storybook addon (configured in `vite.config.ts`).
+Story-based tests (`play` functions) run through Vitest + Playwright via the Storybook addon (configured in `vite.config.ts`) with `pnpm vitest run --project=storybook`. Install the Playwright browser once with `pnpm exec playwright install chromium`.
 
 ## Architecture
 
@@ -69,6 +70,29 @@ React, react-dom, and react/jsx-runtime are externalized — not bundled. Peer d
 ### Class composition
 
 Components compose class names with `tv()` from `tailwind-variants/lite`, mapping base, variants, and slots to CSS Module classes (no Tailwind, no class merger). Do not join class names by hand.
+
+## Claude agents and skills
+
+Feature work runs through agents in `.claude/agents/`. Start it with `pnpm manager` so the manager runs as the main session and can delegate. User guide: `docs/ai-workflow.md`.
+
+```mermaid
+flowchart LR
+  M[manager] --> A[architect] --> E[software-engineer] --> C[code-quality]
+  C -- changes required --> E
+  C -- approved --> Q[qa]
+  Q -- fail --> E
+  Q -- pass --> M
+```
+
+| Agent               | Role                                                                                | Writes code     |
+| ------------------- | ----------------------------------------------------------------------------------- | --------------- |
+| `manager`           | Gathers requirements and designs, writes the spec, runs the pipeline                | No              |
+| `architect`         | Short implementation plan, guards against over-engineering                          | No              |
+| `software-engineer` | Implements the plan with stories and tests                                          | Yes             |
+| `code-quality`      | Reviews only the changed files                                                      | No              |
+| `qa`                | Tests changes in Storybook and in `../flowi-next-test`; ledger in `.claude/qa-log/` | Test files only |
+
+Skills in `.claude/skills/`: `/commit` (small Conventional Commits, never on `main`), `/pr` (PR from a branch using `.github/pull_request_template.md`), `/docs` (sync docs with code changes). Commits and PRs carry no AI attribution.
 
 ## Conventions
 

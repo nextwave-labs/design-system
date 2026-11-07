@@ -54,6 +54,8 @@ If your work is tied to an existing component or feature area, keep the branch n
 
 See the [Adding a new component](#adding-a-new-component) or [Modifying an existing component](#modifying-an-existing-component) sections as needed.
 
+If you use Claude Code, run `pnpm manager` to drive the change through the project agents. See the [AI workflow guide](docs/ai-workflow.md).
+
 ### 3. Commits
 
 The project uses [Conventional Commits](https://www.conventionalcommits.org/). You can use the interactive prompt:

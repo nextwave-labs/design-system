@@ -55,7 +55,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky",
-    "commit": "cz"
+    "commit": "cz",
+    "manager": "claude --agent manager"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

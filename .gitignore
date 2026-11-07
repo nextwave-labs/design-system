@@ -28,3 +28,7 @@ storybook-static
 
 # Packed tarballs
 *.tgz
+
+# Claude
+.claude/qa-log/
+.claude/settings.local.json
