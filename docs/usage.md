@@ -57,6 +57,8 @@ Unlayered `:root` overrides like this one always win over the tokens in the `flo
 
 Prefer overriding semantic tokens over primitive tokens so component intent remains clear. See the token definitions in `src/styles/tokens/semantic/` for supported customization points.
 
+Primitive scales include radius (`--flowi-radius-sm` to `--flowi-radius-2xl`, plus `--flowi-radius-full`), shadow (`--flowi-shadow-sm` to `--flowi-shadow-xl`), and size (for example `--flowi-size-56`). Component tokens use the `--flowi-<component>-*` pattern: Card exposes `--flowi-card-fill`, `-stroke`, `-text`, `-radius`, `-media-radius`, `-shadow`, `-icon-size`, `-icon-fill`, `-icon-ring`, and `-overlay-blur`. See the [Card page](components/card.md#customization).
+
 ## Build-time output
 
 The package ships with:

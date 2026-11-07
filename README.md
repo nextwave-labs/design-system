@@ -52,6 +52,7 @@ Storybook is available at [http://localhost:6006](http://localhost:6006).
 | `pnpm install`         | Install dependencies            |
 | `pnpm build`           | Build the library               |
 | `pnpm lint`            | Run ESLint                      |
+| `pnpm typecheck`       | Type-check source and stories   |
 | `pnpm storybook`       | Start Storybook                 |
 | `pnpm build-storybook` | Build static Storybook output   |
 | `pnpm commit`          | Interactive conventional commit |

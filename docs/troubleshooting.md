@@ -67,3 +67,23 @@ Flowi styles live in the `flowi` cascade layer, and layer priority follows decla
 ## A component fails inside a Server Component
 
 The bundle is marked `'use client'`, so components render from Server Components. The error `Event handlers cannot be passed to Client Component props` means a function prop (`onClick`, `onChange`, `onSearch`, ...) is being passed from a Server Component; move that usage into a Client Component.
+
+## Story tests fail with "Browser Mode was enabled, but provider was not specified"
+
+Vitest 4 needs a provider instance, not a string. Install `@vitest/browser-playwright` and set `provider: playwright()` in the `storybook` project of `vite.config.ts`:
+
+```ts
+import { playwright } from '@vitest/browser-playwright'
+
+// test.projects[].test.browser
+{ enabled: true, headless: true, provider: playwright() }
+```
+
+## A CSS declaration disappears from the built bundle
+
+esbuild's CSS minifier drops an unprefixed declaration that comes before its `-webkit-` version, for example `backdrop-filter` followed by `-webkit-backdrop-filter`. Write the `-webkit-` declaration first:
+
+```css
+-webkit-backdrop-filter: blur(1rem);
+backdrop-filter: blur(1rem);
+```
