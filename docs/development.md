@@ -6,6 +6,12 @@ This document covers the project structure, scripts, and build setup for Flowi.
 
 ```text
 flowi/
+├── .claude/
+│   ├── agents/                 # Claude Code agents (manager, architect, software-engineer, code-quality, qa)
+│   └── skills/                 # Claude Code skills (/commit, /pr, /docs)
+├── .github/
+│   ├── workflows/              # CI and release
+│   └── pull_request_template.md # Pull request template
 ├── .husky/                     # Git hooks (commit-msg, pre-commit)
 ├── .storybook/
 │   ├── main.ts                 # Storybook configuration
@@ -24,6 +30,9 @@ flowi/
 │   │   └── tokens/                # Primitive and semantic token definitions
 │   ├── css-modules.d.ts           # CSS Modules type declarations
 │   └── index.ts                   # Library entry point
+├── docs/                       # Guides and component pages
+├── scripts/
+│   └── create-component.sh     # Component generator
 ├── commitlint.config.js       # commitlint configuration
 ├── eslint.config.js           # ESLint configuration
 ├── prettier.config.js         # Prettier configuration
@@ -32,6 +41,7 @@ flowi/
 ├── tsconfig.build.json        # TS config for library build
 ├── tsconfig.node.json         # TS config for Node files
 ├── vite.config.ts             # Vite: lib mode + Vitest + Storybook
+├── Makefile                   # make component NAME=<Name>
 ├── package.json
 ├── LICENSE
 ├── README.md
@@ -42,15 +52,17 @@ flowi/
 
 ## Scripts
 
-| Command                | Description                                 |
-| ---------------------- | ------------------------------------------- |
-| `pnpm install`         | Install dependencies and set up Husky hooks |
-| `pnpm build`           | Build the library to `dist/`                |
-| `pnpm lint`            | Run ESLint                                  |
-| `pnpm format`          | Format code with Prettier                   |
-| `pnpm storybook`       | Start Storybook on port 6006                |
-| `pnpm build-storybook` | Build the static Storybook site             |
-| `pnpm commit`          | Interactive commit with Commitizen          |
+| Command                               | Description                                                               |
+| ------------------------------------- | ------------------------------------------------------------------------- |
+| `pnpm install`                        | Install dependencies and set up Husky hooks                               |
+| `pnpm build`                          | Build the library to `dist/`                                              |
+| `pnpm lint`                           | Run ESLint                                                                |
+| `pnpm format`                         | Format code with Prettier                                                 |
+| `pnpm storybook`                      | Start Storybook on port 6006                                              |
+| `pnpm build-storybook`                | Build the static Storybook site                                           |
+| `pnpm vitest run --project=storybook` | Run story-based interaction tests (Vitest + Playwright)                   |
+| `pnpm commit`                         | Interactive commit with Commitizen                                        |
+| `pnpm manager`                        | Start the Claude Code feature workflow. See [AI workflow](ai-workflow.md) |
 
 ## Creating a component
 
@@ -116,6 +128,8 @@ pnpm build-storybook
 ```
 
 This keeps the repo consistent with the current CI workflow, which runs `pnpm lint` and `pnpm build`.
+
+Story-based tests are not part of CI. Run them locally with `pnpm vitest run --project=storybook`. Install the Playwright browser once with `pnpm exec playwright install chromium`.
 
 Story-based interaction checks are defined through the Storybook Vitest addon. Run `pnpm build-storybook` to verify the production Storybook build and use the accessibility panel when reviewing component stories. Accessibility checks are advisory because Storybook is configured with `test: 'todo'`.
 

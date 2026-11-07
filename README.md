@@ -41,6 +41,7 @@ Storybook is available at [http://localhost:6006](http://localhost:6006).
 - [Component documentation](docs/components/index.md) — component catalog, APIs, and usage details
 - [Component development guide](docs/development.md#creating-a-component) — scaffold and test new components
 - [Troubleshooting guide](docs/troubleshooting.md) — common build, packaging, and Storybook issues
+- [AI workflow](docs/ai-workflow.md) — build features with Claude Code agents (`pnpm manager`)
 - [Contributing guide](CONTRIBUTING.md) — contribution flow, branch strategy, and commit conventions
 - [Deployment guide](DEPLOYMENT.md) — release process and npm publishing
 
@@ -54,6 +55,7 @@ Storybook is available at [http://localhost:6006](http://localhost:6006).
 | `pnpm storybook`       | Start Storybook                 |
 | `pnpm build-storybook` | Build static Storybook output   |
 | `pnpm commit`          | Interactive conventional commit |
+| `pnpm manager`         | Start the AI feature workflow   |
 
 ## Test the built library locally
 
