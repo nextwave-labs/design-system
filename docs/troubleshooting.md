@@ -54,3 +54,16 @@ Override semantic tokens after importing the Flowi stylesheet and make sure the 
 ```
 
 Prefer semantic tokens such as `--flowi-color-action-primary` over primitive palette values. See the [usage guide](usage.md#theming) for the supported theming approach.
+
+## Tailwind classes do not override Flowi styles
+
+Flowi styles live in the `flowi` cascade layer, and layer priority follows declaration order. If the Flowi stylesheet loads after Tailwind, the `flowi` layer is declared after `utilities` and wins. Declare the order explicitly at the top of the global stylesheet:
+
+```css
+@layer theme, base, flowi, components, utilities;
+@import 'tailwindcss';
+```
+
+## A component fails inside a Server Component
+
+The bundle is marked `'use client'`, so components render from Server Components. The error `Event handlers cannot be passed to Client Component props` means a function prop (`onClick`, `onChange`, `onSearch`, ...) is being passed from a Server Component; move that usage into a Client Component.

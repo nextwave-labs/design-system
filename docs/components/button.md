@@ -31,7 +31,7 @@ Use a native button label or accessible name, and set `type='button'` when the b
 
 ## Next.js App Router
 
-When using `Button` with the Next.js App Router, place interactive usage behind a Client Component boundary. The source component includes `'use client'`, but the published library bundle should not be assumed to preserve that directive in every consumer toolchain:
+The published bundle starts with a `'use client'` directive, so every Flowi component is a Client Component. You can render it from a Server Component tree, including with icons as props. Event handlers (`onClick`, `onChange`, `onSearch`, ...) are functions and cannot be passed from a Server Component, so keep interactive usage inside a Client Component:
 
 ```tsx
 'use client'
@@ -42,8 +42,6 @@ export function SettingsButton() {
   return <Button onClick={() => console.log('open settings')}>Settings</Button>
 }
 ```
-
-The component can be imported from a Server Component tree, but event handlers and other interactive usage must remain inside a Client Component. Do not pass event handlers from a Server Component.
 
 ## Accessibility
 

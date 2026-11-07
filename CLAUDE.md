@@ -60,6 +60,8 @@ Barrel chain: `src/index.ts` → `src/components/index.ts` → `src/components/<
 - Design tokens in `src/styles/tokens.css` — all prefixed `--flowi-*` (colors, typography, spacing, radius, shadows)
 - Components use CSS Modules (`.module.css`), typed via `src/css-modules.d.ts`
 - Tokens are imported in `src/index.ts` (bundled into library CSS) and in `.storybook/preview.ts` (available in stories)
+- The build wraps the extracted `dist/styles/flowi.css` in `@layer flowi` (plugin in `vite.config.ts`), so consumer CSS can override it
+- The build prepends `'use client'` to the JS bundles (`output.banner`), because bundling drops per-module directives
 
 ### Externals
 

@@ -73,4 +73,4 @@ Icons come from the shared [icon set](icons.md); any `ReactNode` works, and SVGs
 
 ## Next.js App Router
 
-Like `Button`, use `Input` with event handlers inside a Client Component.
+`Input` is a Client Component (the bundle starts with `'use client'`). It renders from a Server Component as long as no event handlers are passed; controlled usage and handlers such as `onChange` belong in a Client Component. See [Button](button.md#nextjs-app-router) for an example.
