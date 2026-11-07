@@ -5,4 +5,7 @@
   --flowi-spacing-lg: 1rem;
   --flowi-spacing-xl: 1.5rem;
   --flowi-spacing-2xl: 2rem;
+
+  /* Off-scale step, named by its px value */
+  --flowi-spacing-10: 0.625rem;
 }

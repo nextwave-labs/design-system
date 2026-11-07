@@ -1,28 +1,41 @@
+/*
+ * Button states follow the Buttons design spec. "Inside" borders and focus
+ * rings are drawn with box-shadow so the button never resizes between states.
+ * Heights, min-widths, radii and icon sizes have no shared token scale, so
+ * each size sets them as local custom properties.
+ */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: var(--flowi-spacing-md) var(--flowi-spacing-lg);
+  gap: var(--flowi-button-gap);
   font-family: var(--flowi-font-family);
-  border: var(--flowi-border-width-thin) solid transparent;
-  border-radius: var(--flowi-radius-md);
+  border: none;
   cursor: pointer;
   transition:
     background-color var(--flowi-motion-duration-fast)
       var(--flowi-motion-easing-standard),
-    border-color var(--flowi-motion-duration-fast)
-      var(--flowi-motion-easing-standard),
+    color var(--flowi-motion-duration-fast) var(--flowi-motion-easing-standard),
     box-shadow var(--flowi-motion-duration-fast)
       var(--flowi-motion-easing-standard);
 }
 
-.button:focus-visible {
-  outline: var(--flowi-focus-ring-width) solid var(--flowi-color-focus-ring);
-  outline-offset: var(--flowi-focus-ring-offset);
+.button:disabled {
+  cursor: not-allowed;
 }
 
-.button:disabled {
-  opacity: var(--flowi-opacity-disabled);
-  cursor: not-allowed;
+.icon {
+  display: inline-flex;
+  flex: none;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+}
+
+.icon > svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* Variants */
@@ -40,43 +53,156 @@
   background-color: var(--flowi-color-action-primary-active);
 }
 
+.primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--flowi-focus-ring-width) var(--flowi-color-focus-ring);
+}
+
 .secondary {
-  background-color: var(--flowi-color-surface);
-  color: var(--flowi-color-text-default);
-  border-color: var(--flowi-color-border);
+  background-color: var(--flowi-color-action-secondary);
+  color: var(--flowi-color-action-primary);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(--flowi-color-surface-hover);
-  border-color: var(--flowi-color-border-hover);
+  background-color: var(--flowi-color-action-secondary-hover);
+  color: var(--flowi-color-action-primary-hover);
 }
 
 .secondary:active:not(:disabled) {
-  background-color: var(--flowi-color-surface-active);
+  color: var(--flowi-color-action-primary-active);
+  box-shadow: inset 0 0 0 var(--flowi-border-width-thin)
+    var(--flowi-color-action-primary-active);
+}
+
+.secondary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--flowi-focus-ring-width) var(--flowi-color-focus-ring);
+}
+
+.tertiary {
+  background-color: var(--flowi-color-surface);
+  color: var(--flowi-color-action-primary);
+  box-shadow: inset 0 0 0 var(--flowi-border-width-thin)
+    var(--flowi-color-action-primary);
+}
+
+.tertiary:hover:not(:disabled) {
+  background-color: var(--flowi-color-action-secondary);
+  color: var(--flowi-color-action-primary-hover);
+  box-shadow: inset 0 0 0 var(--flowi-border-width-thin)
+    var(--flowi-color-action-primary-hover);
+}
+
+.tertiary:active:not(:disabled) {
+  background-color: var(--flowi-color-action-secondary);
+  color: var(--flowi-color-action-primary-active);
+  box-shadow: inset 0 0 0 var(--flowi-border-width-thin)
+    var(--flowi-color-action-primary-active);
+}
+
+.tertiary:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--flowi-focus-ring-width)
+    var(--flowi-color-action-primary);
+}
+
+.text {
+  background-color: transparent;
+  color: var(--flowi-color-action-primary);
+}
+
+.text:hover:not(:disabled) {
+  color: var(--flowi-color-action-primary-hover);
+  text-decoration: underline;
+}
+
+.text:active:not(:disabled) {
+  color: var(--flowi-color-action-primary-active);
+  text-decoration: underline;
+}
+
+.text:focus-visible {
+  outline: none;
+  background-color: var(--flowi-color-action-secondary);
+  text-decoration: underline;
+}
+
+/* Disabled (declared after the variants so it wins at equal specificity) */
+
+.primary:disabled,
+.secondary:disabled {
+  background-color: var(--flowi-color-action-disabled);
+  color: var(--flowi-color-text-on-action-disabled);
+  box-shadow: none;
+}
+
+.tertiary:disabled {
+  background-color: var(--flowi-color-surface);
+  color: var(--flowi-color-text-disabled);
+  box-shadow: inset 0 0 0 var(--flowi-border-width-thin)
+    var(--flowi-color-border-disabled);
+}
+
+.text:disabled {
+  color: var(--flowi-color-text-disabled);
+  text-decoration: none;
 }
 
 /* Sizes use the semantic "button" scale (button-s/m/l/xl) */
 
 .sm {
-  padding: var(--flowi-spacing-xs) var(--flowi-spacing-sm);
+  --button-icon-size: var(--flowi-button-s-icon-size);
+  --button-height: var(--flowi-button-s-height);
+
+  height: var(--button-height);
+  min-width: var(--flowi-button-s-min-width);
+  border-radius: var(--flowi-radius-full);
   font-size: var(--flowi-text-button-s-size);
   font-weight: var(--flowi-text-button-s-weight);
   line-height: var(--flowi-text-button-s-line-height);
-  gap: var(--flowi-spacing-xs);
 }
 
 .md {
-  padding: var(--flowi-spacing-sm) var(--flowi-spacing-md);
+  --button-icon-size: var(--flowi-button-m-icon-size);
+  --button-height: var(--flowi-button-m-height);
+
+  height: var(--button-height);
+  min-width: var(--flowi-button-m-min-width);
+  border-radius: var(--flowi-radius-full);
   font-size: var(--flowi-text-button-m-size);
   font-weight: var(--flowi-text-button-m-weight);
   line-height: var(--flowi-text-button-m-line-height);
-  gap: var(--flowi-spacing-sm);
 }
 
 .lg {
-  padding: var(--flowi-spacing-md) var(--flowi-spacing-lg);
+  --button-icon-size: var(--flowi-button-l-icon-size);
+  --button-height: var(--flowi-button-l-height);
+
+  height: var(--button-height);
+  min-width: var(--flowi-button-l-min-width);
+  border-radius: var(--flowi-radius-full);
   font-size: var(--flowi-text-button-l-size);
   font-weight: var(--flowi-text-button-l-weight);
   line-height: var(--flowi-text-button-l-line-height);
-  gap: var(--flowi-spacing-sm);
+}
+
+.xl {
+  --button-icon-size: var(--flowi-button-xl-icon-size);
+  --button-height: var(--flowi-button-xl-height);
+
+  height: var(--button-height);
+  min-width: var(--flowi-button-xl-min-width);
+  border-radius: var(--flowi-radius-full);
+  font-size: var(--flowi-text-button-xl-size);
+  font-weight: var(--flowi-text-button-xl-weight);
+  line-height: var(--flowi-text-button-xl-line-height);
+}
+
+/* Icon only: a circle whose diameter equals the height of the size */
+
+.iconOnly {
+  width: var(--button-height);
+  min-width: 0;
+  padding: 0;
+  border-radius: var(--flowi-radius-full);
 }

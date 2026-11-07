@@ -63,22 +63,22 @@
   --flowi-text-body-xs-weight: var(--flowi-font-weight-regular);
   --flowi-text-body-xs-line-height: var(--flowi-line-height-18);
 
-  /* Button (S/M reuse the values currently used by the Button component: 14/16px) */
-  --flowi-text-button-xl-size: var(--flowi-font-size-18);
+  /* Button (sizes follow the Buttons design spec: S 14/20, M 15/20, L 16/24, XL 16/24) */
+  --flowi-text-button-xl-size: var(--flowi-font-size-16);
   --flowi-text-button-xl-weight: var(--flowi-font-weight-semibold);
-  --flowi-text-button-xl-line-height: var(--flowi-line-height-28);
+  --flowi-text-button-xl-line-height: var(--flowi-line-height-24);
 
   --flowi-text-button-l-size: var(--flowi-font-size-16);
   --flowi-text-button-l-weight: var(--flowi-font-weight-semibold);
   --flowi-text-button-l-line-height: var(--flowi-line-height-24);
 
-  --flowi-text-button-m-size: var(--flowi-font-size-14);
+  --flowi-text-button-m-size: var(--flowi-font-size-15);
   --flowi-text-button-m-weight: var(--flowi-font-weight-semibold);
   --flowi-text-button-m-line-height: var(--flowi-line-height-20);
 
-  --flowi-text-button-s-size: var(--flowi-font-size-13);
+  --flowi-text-button-s-size: var(--flowi-font-size-14);
   --flowi-text-button-s-weight: var(--flowi-font-weight-semibold);
-  --flowi-text-button-s-line-height: var(--flowi-line-height-16);
+  --flowi-text-button-s-line-height: var(--flowi-line-height-20);
 
   /* Caption */
   --flowi-text-caption-l-size: var(--flowi-font-size-12);
