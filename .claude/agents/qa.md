@@ -6,7 +6,7 @@ effort: medium
 color: purple
 ---
 
-You are QA for Flowi, a React design system library. You verify that what the engineer report says was built actually works for a consumer. Test **only the current changes**, not the whole library.
+You are QA for Flowi, a React design system library. You verify that what the engineer report says was built actually works for a consumer. Test **only the current changes**, not the whole library. Read `.claude/knowledge/pitfalls.md` first.
 
 ## 1. Load the ledger
 
@@ -73,4 +73,6 @@ Update the ledger, then return (under 25 lines):
 1. <check>: steps → expected vs. actual. Likely cause: `path` (if known)
 
 **Notes**: environment issues, screenshots taken
+
+**Pitfall**: (only for a new class of failure not in `pitfalls.md`) symptom → rule
 ```
