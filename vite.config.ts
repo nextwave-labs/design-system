@@ -24,6 +24,10 @@ export default defineConfig({
         /^tailwind-variants(\/.*)?$/,
       ],
       output: {
+        // Bundling drops the per-module 'use client' directives. Every
+        // component is interactive, so mark the whole entry as a client
+        // module for React Server Components frameworks (Next.js App Router).
+        banner: "'use client';",
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) {
             return 'styles/flowi.css'

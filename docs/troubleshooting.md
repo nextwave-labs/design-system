@@ -54,3 +54,7 @@ Override semantic tokens after importing the Flowi stylesheet and make sure the 
 ```
 
 Prefer semantic tokens such as `--flowi-color-action-primary` over primitive palette values. See the [usage guide](usage.md#theming) for the supported theming approach.
+
+## A component fails inside a Server Component
+
+The bundle is marked `'use client'`, so components render from Server Components. The error `Event handlers cannot be passed to Client Component props` means a function prop (`onClick`, `onChange`, `onSearch`, ...) is being passed from a Server Component; move that usage into a Client Component.
