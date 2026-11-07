@@ -14,6 +14,20 @@ pnpm add @flowi/ui
 import '@flowi/ui/styles.css'
 ```
 
+### Cascade layer
+
+All Flowi styles (tokens and components) are wrapped in the `flowi` cascade layer. Any unlayered CSS in your application overrides Flowi regardless of specificity, so `className` and your own stylesheets win without `!important`.
+
+Layered CSS follows layer order instead: the layer declared first has the lowest priority. With Tailwind CSS v4, whose utilities live in layers, declare `flowi` before Tailwind's utilities at the top of your global stylesheet so utility classes can override Flowi:
+
+```css
+/* globals.css */
+@layer theme, base, flowi, components, utilities;
+@import 'tailwindcss';
+```
+
+Without that statement, the order depends on which stylesheet loads first, and Flowi may override your utility classes.
+
 ## Import a component
 
 ```tsx
@@ -38,6 +52,8 @@ Import the stylesheet once at the application entry point. Components use `--flo
   --flowi-color-action-primary-hover: #12568c;
 }
 ```
+
+Unlayered `:root` overrides like this one always win over the tokens in the `flowi` layer, wherever they are declared.
 
 Prefer overriding semantic tokens over primitive tokens so component intent remains clear. See the token definitions in `src/styles/tokens/semantic/` for supported customization points.
 

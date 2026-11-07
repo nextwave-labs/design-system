@@ -1,5 +1,5 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
@@ -7,9 +7,29 @@ import path from 'node:path'
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
 const dirname = import.meta.dirname
 
+/**
+ * Wraps the extracted library CSS in a cascade layer. Unlayered consumer CSS
+ * then overrides Flowi without specificity fights, and consumers can order
+ * the layer against their own (for example below Tailwind's utilities).
+ */
+function cssLayer(name: string, fileName: string): Plugin {
+  return {
+    name: 'flowi-css-layer',
+    apply: 'build',
+    enforce: 'post',
+    generateBundle(_, bundle) {
+      for (const file of Object.values(bundle)) {
+        if (file.type === 'asset' && file.fileName === fileName) {
+          file.source = `@layer ${name} {\n${String(file.source)}\n}\n`
+        }
+      }
+    },
+  }
+}
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), cssLayer('flowi', 'styles/flowi.css')],
   build: {
     lib: {
       entry: path.resolve(dirname, 'src/index.ts'),
